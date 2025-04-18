@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 
+import { Navbar } from '@/app/components/Navbar/Navbar'
+
 const inter = Inter({
   variable: '--font-inter',
   subsets: ['latin'],
@@ -15,11 +17,14 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} antialiased`}>{children}</body>
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.variable} antialiased `}>
+        <Navbar />
+        <main className="relative">{children}</main>
+      </body>
     </html>
   )
 }
