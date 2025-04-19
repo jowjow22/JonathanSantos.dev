@@ -13,7 +13,7 @@ export const Navbar = () => {
   ]
   return (
     <motion.nav
-      className="w-full py-5 sticky top-0 backdrop-blur-3xl bg-zinc-900/20 mb-5 z-10"
+      className="w-full py-5 sticky top-0 backdrop-blur-3xl bg-transparent mb-5 z-10"
       layout
       transition={{ duration: 0.5 }}
     >

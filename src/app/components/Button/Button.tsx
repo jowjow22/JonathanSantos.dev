@@ -18,7 +18,7 @@ export const Button = ({
   onlyIcon,
   ...rest
 }: IButtonProps) => {
-  const base_class = `px-4 py-2 min-x-[64px] rounded font-bold cursor-pointer font-poppins transition-colors duration-200 flex flex-row items-center gap-x-1 whitespace-nowrap`
+  const base_class = `px-4 py-2 min-x-[64px] rounded font-bold cursor-pointer font-poppins transition-colors duration-200 flex flex-row items-center gap-x-2 whitespace-nowrap`
   const variant_class = {
     primary:
       'bg-indigo-800 text-white hover:bg-indigo-900 active:bg-indigo-700',
