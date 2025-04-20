@@ -1,5 +1,6 @@
 import { HTMLMotionProps } from 'framer-motion'
 import * as motion from 'motion/react-client'
+import { button as variants } from './button.variants'
 
 interface IButtonProps
   extends Omit<HTMLMotionProps<'button'>, 'variant' | 'children'> {
@@ -18,21 +19,11 @@ export const Button = ({
   onlyIcon,
   ...rest
 }: IButtonProps) => {
-  const base_class = `px-4 py-2 min-x-[64px] rounded font-bold cursor-pointer font-poppins transition-colors duration-200 flex flex-row items-center gap-x-2 whitespace-nowrap`
-  const variant_class = {
-    primary:
-      'bg-indigo-800 text-white hover:bg-indigo-900 active:bg-indigo-700',
-    secondary:
-      'bg-transparent text-white border-2 border-solid border-zinc-600/50 hover:bg-zinc-600/50',
-  }
-  const disabled_class = 'cursor-not-allowed! opacity-50'
-  const icon_class = 'px-2! py-2'
+  const class_variants = variants({ variant, disabled, onlyIcon })
 
   return (
     <motion.button
-      className={`${base_class} ${variant_class[variant]} ${onlyIcon ? icon_class : ''} ${
-        disabled ? disabled_class : ''
-      }`}
+      className={class_variants}
       disabled={disabled}
       whileTap={{
         scale: 0.95,
