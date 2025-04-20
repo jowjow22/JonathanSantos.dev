@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Poppins } from 'next/font/google'
 import './globals.css'
 
 import { Navbar } from '@/app/components/Navbar/Navbar'
@@ -7,6 +7,12 @@ import { Navbar } from '@/app/components/Navbar/Navbar'
 const inter = Inter({
   variable: '--font-inter',
   subsets: ['latin'],
+})
+
+const poppins = Poppins({
+  variable: '--font-poppins',
+  subsets: ['latin'],
+  weight: ['400', '600', '700'],
 })
 
 export const metadata: Metadata = {
@@ -21,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth selection:bg-indigo-600">
-      <body className={`${inter.variable} antialiased `}>
+      <body className={`${inter.variable} ${poppins.variable} antialiased `}>
         <Navbar />
         <main className="relative">{children}</main>
       </body>

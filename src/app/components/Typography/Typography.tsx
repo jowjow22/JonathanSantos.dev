@@ -40,7 +40,9 @@ const H3 = ({
   className?: string
 }) => {
   return (
-    <h3 className={`text-xl font-bold text-zinc-200 font-poppins ${className}`}>
+    <h3
+      className={`text-xl font-bold text-zinc-200 font-poppins lg:text-3xl ${className}`}
+    >
       {children}
     </h3>
   )
@@ -54,9 +56,7 @@ const Paragraph = ({
   className?: string
 }) => {
   return (
-    <p
-      className={`text-sm text-zinc-200 font-poppins lg:text-base ${className}`}
-    >
+    <p className={`text-sm text-zinc-200 font-inter lg:text-base ${className}`}>
       {children}
     </p>
   )

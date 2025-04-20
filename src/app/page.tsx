@@ -11,6 +11,7 @@ import {
 import * as motion from 'motion/react-client'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Card } from './components/Card/Card'
 
 export default function Home() {
   return (
@@ -22,7 +23,7 @@ export default function Home() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3, delay: 0.15 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
         >
           <Image
             src="/me.png"
@@ -32,7 +33,7 @@ export default function Home() {
             className="mb-8 md:w-sm min-w-3xs "
           />
         </motion.div>
-        <div className="max-w-2xl flex flex-col gap-y-4 items-center">
+        <div className="max-w-2xl flex flex-col gap-y-4 items-center lg:items-start">
           <Reveal>
             <Typography.H1 className="text-center md:text-start">
               Jonathan Santos
@@ -86,6 +87,7 @@ export default function Home() {
         id="projects"
       >
         <Typography.H1>Projects</Typography.H1>
+        <Card />
       </section>
       <section
         className="w-full h-screen flex flex-col items-center justify-center"
