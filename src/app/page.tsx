@@ -70,11 +70,13 @@ export default function Home() {
         </div>
       </section>
       <section
-        className="w-full h-screen flex flex-col items-center justify-center"
+        className="w-full h-screen flex flex-col items-start justify-center px-68 gap-y-8"
         id="projects"
       >
         <Typography.H1>Projects</Typography.H1>
-        <ProjectsSection />
+        <div className="flex flex-row overflow-x-scroll gap-x-8 max-w-full px-8">
+          <ProjectsSection />
+        </div>
       </section>
       <section
         className="w-full h-screen flex flex-col items-center justify-center"

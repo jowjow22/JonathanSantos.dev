@@ -9,27 +9,31 @@ import { IconMaximize } from '@tabler/icons-react'
 
 export const ProjectsSection = () => {
   return (
-    <Card variant="image_background">
-      <Card.Header>
-        <Button onlyIcon icon={<IconMaximize size={20} />} />
-      </Card.Header>
-      <Card.Content>
-        <Typography.H3 className="font-bold text-white!">
-          Project Title
-        </Typography.H3>
-        <p className="text-ellipsis whitespace-nowrap overflow-hidden">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
-      </Card.Content>
-      <Card.Footer>
-        <TagGroup>
-          <Tag icon={IconMaximize} text="Vue" />
-          <Tag icon={IconMaximize} text="Typescript" />
-          <Tag icon={IconMaximize} text="Typescript" />
-          <Tag icon={IconMaximize} text="Typescript" />
-        </TagGroup>
-      </Card.Footer>
-    </Card>
+    <>
+      {Array.from({ length: 6 }, (_, index) => (
+        <Card variant="image_background" key={index}>
+          <Card.Header>
+            <Button onlyIcon icon={<IconMaximize size={20} />} />
+          </Card.Header>
+          <Card.Content>
+            <Typography.H3 className="font-bold text-white!">
+              Project Title
+            </Typography.H3>
+            <p className="text-ellipsis whitespace-nowrap overflow-hidden">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </Card.Content>
+          <Card.Footer>
+            <TagGroup>
+              <Tag icon={IconMaximize} text="Vue" />
+              <Tag icon={IconMaximize} text="Typescript" />
+              <Tag icon={IconMaximize} text="Typescript" />
+              <Tag icon={IconMaximize} text="Typescript" />
+            </TagGroup>
+          </Card.Footer>
+        </Card>
+      ))}
+    </>
   )
 }

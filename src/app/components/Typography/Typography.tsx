@@ -9,7 +9,7 @@ const H1 = ({
 }) => {
   return (
     <h1
-      className={`text-3xl font-bold text-zinc-200 font-poppin lg:text-6xl md:text-5xl ${className}`}
+      className={`text-3xl font-bold text-zinc-200 font-poppins lg:text-6xl md:text-5xl ${className}`}
     >
       {children}
     </h1>
