@@ -78,7 +78,9 @@ export const TagGroup = ({ children }: ITagGroupProps) => {
         </div>
       ))}
 
-      {hiddenCount > 0 && <Tag text={`+${hiddenCount}`} color="#4f46e5" />}
+      {hiddenCount > 0 && (
+        <Tag text={`+${hiddenCount}`} color="var(--color-indigo-600)" />
+      )}
     </div>
   )
 }

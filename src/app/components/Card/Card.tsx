@@ -1,5 +1,15 @@
+'use client'
+
+import CardContextProvider, { CardContext } from '@/app/contexts/CardContext'
 import * as motion from 'motion/react-client'
 import Image from 'next/image'
+import React, { useContext } from 'react'
+import { cardVariantSchema } from './card.schema'
+import {
+  cardContainer as cardContainerVariants,
+  cardHeader as cardHeaderVariants,
+  card as cardVariants,
+} from './card.variants'
 
 const CardHeader = ({
   children,
@@ -8,11 +18,26 @@ const CardHeader = ({
   children: React.ReactNode
   className?: string
 }) => {
+  const { variant } = useContext(CardContext)
+  const cardVariant = cardVariantSchema.parse(variant)
+  const currentVariant = cardHeaderVariants({ variant: cardVariant })
   return (
-    <header
-      className={`flex items-center justify-self-start! justify-end w-full ${className}`}
-    >
-      {children}
+    <header className={`${currentVariant} ${className}`}>
+      {variant === 'default' && (
+        <>
+          <Image
+            src="/sample-article.webp"
+            alt="Project Title"
+            fill
+            sizes="100%"
+            className="relative! object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+          />
+          <div className="absolute top-0 right-0 bg-linear-to-b to-transparent to-70% from-black/80 from-50% w-full h-full flex items-start justify-end p-3">
+            {children}
+          </div>
+        </>
+      )}
+      {variant === 'image_background' && children}
     </header>
   )
 }
@@ -49,10 +74,19 @@ const CardContent = ({
   )
 }
 
-export const Card = ({ children }: { children: React.ReactNode }) => {
+export const Card = ({
+  children,
+  variant,
+}: {
+  children: React.ReactNode
+  variant?: 'default' | 'image_background'
+}) => {
+  const currentVariant = cardVariants({ variant })
+  const cardContainerVariant = cardContainerVariants({ variant })
+
   return (
     <motion.article
-      className="relative rounded-xl min-w-80 h-72 group overflow-hidden"
+      className={cardContainerVariant}
       whileHover={{ scale: 1.02 }}
       transition={{
         type: 'spring',
@@ -60,15 +94,19 @@ export const Card = ({ children }: { children: React.ReactNode }) => {
         duration: 0.2,
       }}
     >
-      <Image
-        src="/sample-project.png"
-        alt="Project Title"
-        fill
-        sizes="100%"
-        className="relative! object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
-      />
-      <div className="absolute bg-linear-to-t from-black/80 to-transparent text-white p-4 h-full bottom-0 min-w-full max-w-full grid grid-cols-1 grid-rows-8">
-        {children}
+      {variant === 'image_background' && (
+        <Image
+          src="/sample-project.png"
+          alt="Project Title"
+          fill
+          sizes="100%"
+          className="relative! object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+        />
+      )}
+      <div className={currentVariant}>
+        <CardContextProvider variant={variant ?? 'default'}>
+          {children}
+        </CardContextProvider>
       </div>
     </motion.article>
   )

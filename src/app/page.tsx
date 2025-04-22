@@ -1,5 +1,6 @@
 import { Reveal } from '@/app/animations/Reveal'
 import { Button } from '@/app/components/Button/Button'
+import { ProfileImage } from '@/app/components/ProfileImage/ProfileImage'
 import { Typography } from '@/app/components/Typography/Typography'
 import {
   IconArrowLeft,
@@ -7,14 +8,9 @@ import {
   IconBrandLinkedinFilled,
   IconCoffee,
   IconMail,
-  IconMaximize,
 } from '@tabler/icons-react'
-import * as motion from 'motion/react-client'
-import Image from 'next/image'
 import Link from 'next/link'
-import { Card } from './components/Card/Card'
-import { Tag } from './components/Tag/Tag'
-import { TagGroup } from './components/TagGroup/TagGroup'
+import { ProjectsSection } from './components/ProjectsSection/ProjectsSection'
 
 export default function Home() {
   return (
@@ -23,19 +19,7 @@ export default function Home() {
         className="w-full h-screen flex flex-col items-center justify-center px-16 md:flex-row-reverse md:gap-x-[5%]"
         id="about"
       >
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-        >
-          <Image
-            src="/me.png"
-            alt="Jonathan Santos"
-            width={250}
-            height={250}
-            className="mb-8 md:w-sm min-w-3xs "
-          />
-        </motion.div>
+        <ProfileImage />
         <div className="max-w-2xl flex flex-col gap-y-4 items-center lg:items-start">
           <Reveal>
             <Typography.H1 className="text-center md:text-start">
@@ -49,7 +33,7 @@ export default function Home() {
           </Reveal>
           <Reveal>
             <Typography.Paragraph className="text-center md:text-start">
-              I’m a passionate Software Engineer specializing in front-end and
+              I'm a passionate Software Engineer specializing in front-end and
               full-stack development. I excel at creating efficient,
               user-centric interfaces using HTML, CSS, JavaScript, React, Vue,
               Node, and TypeScript. With proven experience at Juntos Somos Mais
@@ -90,30 +74,7 @@ export default function Home() {
         id="projects"
       >
         <Typography.H1>Projects</Typography.H1>
-        <Card>
-          <Card.Header>
-            <Button onlyIcon icon={<IconMaximize size={20} />} />
-          </Card.Header>
-          <Card.Content>
-            <Typography.H3 className="font-bold text-white!">
-              Project Title
-            </Typography.H3>
-            <p className="text-ellipsis whitespace-nowrap overflow-hidden">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-          </Card.Content>
-          <Card.Footer>
-            <TagGroup>
-              <Tag icon={IconMaximize} text="Vue" />
-              <Tag icon={IconMaximize} text="Typescript" />
-
-              <Tag icon={IconMaximize} text="Typescript" />
-
-              <Tag icon={IconMaximize} text="Typescript" />
-            </TagGroup>
-          </Card.Footer>
-        </Card>
+        <ProjectsSection />
       </section>
       <section
         className="w-full h-screen flex flex-col items-center justify-center"
@@ -125,9 +86,8 @@ export default function Home() {
         icon={<IconArrowLeft color="white" size={20} />}
         onlyIcon
         disabled
-      >
-        View Projects
-      </Button>
+        className="fixed bottom-10 right-10 text-white"
+      />
     </>
   )
 }
