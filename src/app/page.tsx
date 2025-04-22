@@ -33,7 +33,7 @@ export default function Home() {
           </Reveal>
           <Reveal>
             <Typography.Paragraph className="text-center md:text-start">
-              I'm a passionate Software Engineer specializing in front-end and
+              Im a passionate Software Engineer specializing in front-end and
               full-stack development. I excel at creating efficient,
               user-centric interfaces using HTML, CSS, JavaScript, React, Vue,
               Node, and TypeScript. With proven experience at Juntos Somos Mais
