@@ -1,10 +1,55 @@
-import { IconMaximize } from '@tabler/icons-react'
 import * as motion from 'motion/react-client'
 import Image from 'next/image'
-import { Button } from '../Button/Button'
-import { Typography } from '../Typography/Typography'
 
-export const Card = ({}) => {
+const CardHeader = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode
+  className?: string
+}) => {
+  return (
+    <header
+      className={`flex items-center justify-self-start! justify-end w-full ${className}`}
+    >
+      {children}
+    </header>
+  )
+}
+
+const CardFooter = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode
+  className?: string
+}) => {
+  return (
+    <footer
+      className={`flex gap-x-4 row-start-8 row-end-8 items-center ${className}`}
+    >
+      {children}
+    </footer>
+  )
+}
+
+const CardContent = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode
+  className?: string
+}) => {
+  return (
+    <section
+      className={`max-w-full flex flex-col gap-y-4 row-start-5 row-end-8 justify-center ${className}`}
+    >
+      <div>{children}</div>
+    </section>
+  )
+}
+
+export const Card = ({ children }: { children: React.ReactNode }) => {
   return (
     <motion.article
       className="relative rounded-xl min-w-80 h-72 group overflow-hidden"
@@ -22,26 +67,13 @@ export const Card = ({}) => {
         sizes="100%"
         className="relative! object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
       />
-      <div className="absolute bg-linear-to-t from-black/80 to-transparent flex-col text-white p-4 h-full bottom-0 flex items-start justify-between gap-y-[auto] min-w-full max-w-full ">
-        <header className="flex items-center justify-end w-full">
-          <Button icon={<IconMaximize size={20} />} onlyIcon />
-        </header>
-        <section className="max-w-full flex flex-col gap-y-4">
-          <div>
-            <Typography.H3 className="font-bold text-white!">
-              Project Title
-            </Typography.H3>
-            <p className="text-ellipsis whitespace-nowrap overflow-hidden">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
-          </div>
-          <div className="flex gap-x-4">
-            <Button icon={<IconMaximize size={20} />}>Demo</Button>
-            <Button icon={<IconMaximize size={20} />}>GitHub</Button>
-          </div>
-        </section>
+      <div className="absolute bg-linear-to-t from-black/80 to-transparent text-white p-4 h-full bottom-0 min-w-full max-w-full grid grid-cols-1 grid-rows-8">
+        {children}
       </div>
     </motion.article>
   )
 }
+
+Card.Header = CardHeader
+Card.Content = CardContent
+Card.Footer = CardFooter

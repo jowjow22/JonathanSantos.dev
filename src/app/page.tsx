@@ -7,11 +7,14 @@ import {
   IconBrandLinkedinFilled,
   IconCoffee,
   IconMail,
+  IconMaximize,
 } from '@tabler/icons-react'
 import * as motion from 'motion/react-client'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Card } from './components/Card/Card'
+import { Tag } from './components/Tag/Tag'
+import { TagGroup } from './components/TagGroup/TagGroup'
 
 export default function Home() {
   return (
@@ -87,7 +90,30 @@ export default function Home() {
         id="projects"
       >
         <Typography.H1>Projects</Typography.H1>
-        <Card />
+        <Card>
+          <Card.Header>
+            <Button onlyIcon icon={<IconMaximize size={20} />} />
+          </Card.Header>
+          <Card.Content>
+            <Typography.H3 className="font-bold text-white!">
+              Project Title
+            </Typography.H3>
+            <p className="text-ellipsis whitespace-nowrap overflow-hidden">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+          </Card.Content>
+          <Card.Footer>
+            <TagGroup>
+              <Tag icon={IconMaximize} text="Vue" />
+              <Tag icon={IconMaximize} text="Typescript" />
+
+              <Tag icon={IconMaximize} text="Typescript" />
+
+              <Tag icon={IconMaximize} text="Typescript" />
+            </TagGroup>
+          </Card.Footer>
+        </Card>
       </section>
       <section
         className="w-full h-screen flex flex-col items-center justify-center"

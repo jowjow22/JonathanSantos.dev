@@ -7,11 +7,11 @@ export const button = cva(
       variant: {
         primary: 'bg-indigo-800 text-white',
         secondary:
-          'bg-transparent text-white border-2 border-solid border-zinc-600/50',
+          'bg-transparent text-white border-2 border-solid border-gray-600/50',
       },
       disabled: {
         false: null,
-        true: 'cursor-not-allowed',
+        true: 'cursor-not-allowed! opacity-50',
       },
       onlyIcon: {
         false: null,
