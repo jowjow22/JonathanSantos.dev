@@ -19,24 +19,25 @@ export const Navbar = () => {
     >
       <ol className="w-full flex flex-row items-center justify-center gap-x-4 list-none">
         {links.map((link, index) => (
-          <motion.li
-            key={index}
-            onClick={() => setSelectedLink(index)}
-            className={`${
-              selectedLink === index
-                ? 'text-gray-200'
-                : 'text-gray-600 hover:text-gray-400'
-            } cursor-pointer transition-colors duration-200 relative`}
-            layout
-          >
-            <Link href={link.path}>{link.name}</Link>
-            {selectedLink === index && (
-              <motion.div
-                className="w-full h-0.5 rounded-lg absolute bg-gray-200"
-                layoutId="underline"
-              />
-            )}
-          </motion.li>
+          <Link href={link.path} key={index}>
+            <motion.li
+              onClick={() => setSelectedLink(index)}
+              className={`${
+                selectedLink === index
+                  ? 'text-gray-200'
+                  : 'text-gray-600 hover:text-gray-400'
+              } cursor-pointer transition-colors duration-200 relative`}
+              layout
+            >
+              {link.name}
+              {selectedLink === index && (
+                <motion.div
+                  className="w-full h-0.5 rounded-lg absolute bg-gray-200"
+                  layoutId="underline"
+                />
+              )}
+            </motion.li>
+          </Link>
         ))}
       </ol>
     </motion.nav>
