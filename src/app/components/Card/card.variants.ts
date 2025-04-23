@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority'
 
 export const card = cva(
-  'absolute  text-white p-4 h-full bottom-0 min-w-full max-w-full grid grid-cols-1 grid-rows-8',
+  'absolute  text-white p-4 h-62 xl:h-72 bottom-0 min-w-full max-w-full grid grid-cols-1 grid-rows-4 xl:grid-rows-8',
   {
     variants: {
       variant: {
@@ -15,11 +15,11 @@ export const card = cva(
   }
 )
 
-export const cardContainer = cva('relative rounded-xl min-w-80 group overflow-hidden', {
+export const cardContainer = cva('relative rounded-xl lg:min-w-80 group overflow-hidden', {
     variants: {
         variant: {
         default: 'h-82',
-        image_background: 'h-72',
+        image_background: 'h-62 xl:h-72',
         },
     },
     defaultVariants: {

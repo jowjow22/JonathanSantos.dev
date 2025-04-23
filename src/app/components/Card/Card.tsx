@@ -100,7 +100,7 @@ export const Card = ({
           alt="Project Title"
           fill
           sizes="100%"
-          className="relative! object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+          className="relative! object-cover max-h-full transition-transform duration-500 ease-in-out group-hover:scale-110"
         />
       )}
       <div className={currentVariant}>

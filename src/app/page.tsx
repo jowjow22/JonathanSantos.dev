@@ -44,7 +44,7 @@ export default function Home() {
           </Reveal>
           <Reveal width="w-full">
             <fieldset className="flex justify-between flex-col gap-y-4 lg:flex-row">
-              <div className="flex gap-x-4 w-full">
+              <div className="flex gap-x-4 w-full justify-center">
                 <Button>My Career</Button>
                 <Button variant="secondary" icon={<IconCoffee size={20} />}>
                   Buy me a coffee
@@ -70,13 +70,11 @@ export default function Home() {
         </div>
       </section>
       <section
-        className="w-full h-screen flex flex-col items-start justify-center px-68 gap-y-8"
+        className="w-full h-screen flex flex-col items-start justify-center px-8 sm:px-26 lg:px-46 gap-y-8"
         id="projects"
       >
         <Typography.H1>Projects</Typography.H1>
-        <div className="flex flex-row overflow-x-scroll gap-x-8 max-w-full px-8">
-          <ProjectsSection />
-        </div>
+        <ProjectsSection />
       </section>
       <section
         className="w-full h-screen flex flex-col items-center justify-center"
