@@ -14,8 +14,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
+import { motion } from 'motion/react'
 
 export const ProjectsSection = () => {
+  const MotionCarouselItem = motion(CarouselItem)
   return (
     <Carousel
       opts={{
@@ -25,7 +27,14 @@ export const ProjectsSection = () => {
     >
       <CarouselContent>
         {Array.from({ length: 6 }, (_, index) => (
-          <CarouselItem key={index} className="md:basis-1/2 xl:basis-1/3">
+          <MotionCarouselItem
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.2 }}
+            key={`${index} - ${Math.random()}`}
+            className="md:basis-1/2 xl:basis-1/3"
+          >
             <Card variant="image_background">
               <Card.Header>
                 <Button onlyIcon icon={<IconMaximize size={20} />} />
@@ -48,7 +57,7 @@ export const ProjectsSection = () => {
                 </TagGroup>
               </Card.Footer>
             </Card>
-          </CarouselItem>
+          </MotionCarouselItem>
         ))}
       </CarouselContent>
       <CarouselPrevious className="rounded-sm bg-indigo-600 border-none hidden sm:flex" />
