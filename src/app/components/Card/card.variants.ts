@@ -15,7 +15,7 @@ export const card = cva(
   }
 )
 
-export const cardContainer = cva('relative rounded-xl min-w-80 group overflow-hidden', {
+export const cardContainer = cva('relative rounded-xl lg:min-w-80 group overflow-hidden', {
     variants: {
         variant: {
         default: 'h-82',
@@ -43,7 +43,7 @@ export const cardHeader = cva('justify-self-start! w-full', {
 export const cardContent = cva('max-w-full flex flex-col gap-y-4 justify-center', {
   variants: {
     variant: {
-      default: 'row-start-5 row-end-6',
+      default: 'row-start-5 row-end-6 flex-1',
       image_background: 'row-start-5 row-end-8',
     },
     defaultVariants: {

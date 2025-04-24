@@ -37,9 +37,9 @@ const CardHeader = ({
             fill
             style={{ borderRadius: '0.5rem' }}
             sizes="100%"
-            className="relative! object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
+            className="relative! object-cover transition-transform duration-500 ease-in-out group-hover:scale-103 overflow-hidden"
           />
-          <div className="absolute rounded-lg top-0 right-0 bg-linear-to-b to-transparent to-100% from-black/80 from-70% w-full h-full flex items-start justify-end p-3">
+          <div className="absolute rounded-lg transition-transform duration-500 ease-in-out top-0 right-0 bg-linear-to-b to-transparent to-100% from-black/80 from-70% w-full h-full flex items-start justify-end p-3 group-hover:scale-103">
             {children}
           </div>
         </>
