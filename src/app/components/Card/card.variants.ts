@@ -15,7 +15,7 @@ export const card = cva(
   }
 )
 
-export const cardContainer = cva('relative rounded-xl lg:min-w-80 group overflow-hidden', {
+export const cardContainer = cva('relative rounded-xl min-w-80 md:min-w-70 lg:min-w-80 group overflow-hidden', {
     variants: {
         variant: {
         default: 'h-82',
