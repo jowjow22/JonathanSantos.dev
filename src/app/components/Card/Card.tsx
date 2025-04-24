@@ -7,6 +7,7 @@ import React, { useContext } from 'react'
 import { cardVariantSchema } from './card.schema'
 import {
   cardContainer as cardContainerVariants,
+  cardContent,
   cardHeader as cardHeaderVariants,
   card as cardVariants,
 } from './card.variants'
@@ -14,9 +15,14 @@ import {
 const CardHeader = ({
   children,
   className,
+  image,
 }: {
   children: React.ReactNode
   className?: string
+  image?: {
+    src: string
+    alt: string
+  }
 }) => {
   const { variant } = useContext(CardContext)
   const cardVariant = cardVariantSchema.parse(variant)
@@ -26,13 +32,14 @@ const CardHeader = ({
       {variant === 'default' && (
         <>
           <Image
-            src="/sample-article.webp"
-            alt="Project Title"
+            src={image?.src ?? '/sample-project.png'}
+            alt={image?.alt ?? 'Card image'}
             fill
+            style={{ borderRadius: '0.5rem' }}
             sizes="100%"
             className="relative! object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
           />
-          <div className="absolute top-0 right-0 bg-linear-to-b to-transparent to-70% from-black/80 from-50% w-full h-full flex items-start justify-end p-3">
+          <div className="absolute rounded-lg top-0 right-0 bg-linear-to-b to-transparent to-100% from-black/80 from-70% w-full h-full flex items-start justify-end p-3">
             {children}
           </div>
         </>
@@ -65,10 +72,11 @@ const CardContent = ({
   children: React.ReactNode
   className?: string
 }) => {
+  const { variant } = useContext(CardContext)
+  const cardVariant = cardVariantSchema.parse(variant)
+  const currentVariant = cardContent({ variant: cardVariant })
   return (
-    <section
-      className={`max-w-full flex flex-col gap-y-4 row-start-5 row-end-8 justify-center ${className}`}
-    >
+    <section className={`${currentVariant} ${className}`}>
       <div>{children}</div>
     </section>
   )

@@ -10,9 +10,13 @@ import {
   IconMail,
 } from '@tabler/icons-react'
 import Link from 'next/link'
+import { ArticlesSection } from './components/ArticlesSection/ArticlesSection'
 import { ProjectsSection } from './components/ProjectsSection/ProjectsSection'
 
-export default function Home() {
+import { fetchArticles } from '@/app/server/actions/articles'
+
+export default async function Home() {
+  const articles = await fetchArticles()
   return (
     <>
       <section
@@ -70,17 +74,18 @@ export default function Home() {
         </div>
       </section>
       <section
-        className="w-full h-screen flex flex-col items-start justify-center px-8 sm:px-26 lg:px-46 gap-y-8"
+        className="w-full h-screen flex flex-col items-start justify-center px-4 xs:px-8 sm:px-26 lg:px-36 gap-y-8"
         id="projects"
       >
         <Typography.H1>Projects</Typography.H1>
         <ProjectsSection />
       </section>
       <section
-        className="w-full h-screen flex flex-col items-center justify-center"
-        id="blog"
+        className="w-full h-screen flex flex-col items-start justify-center px-4 xs:px-8 sm:px-26 lg:px-36 gap-y-8"
+        id="articles"
       >
         <Typography.H1>Blog</Typography.H1>
+        <ArticlesSection articles={articles} />
       </section>
       <Button
         icon={<IconArrowLeft color="white" size={20} />}

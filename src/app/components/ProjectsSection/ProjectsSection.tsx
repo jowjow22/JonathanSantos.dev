@@ -33,7 +33,7 @@ export const ProjectsSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
             key={`${index} - ${Math.random()}`}
-            className="md:basis-1/2 xl:basis-1/3"
+            className="md:basis-1/2 xl:basis-1/3 px-6"
           >
             <Card variant="image_background">
               <Card.Header>

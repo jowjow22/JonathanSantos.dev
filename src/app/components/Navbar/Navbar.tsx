@@ -9,7 +9,7 @@ export const Navbar = () => {
   const links = [
     { name: 'About', path: '#about' },
     { name: 'Projects', path: '#projects' },
-    { name: 'Blog', path: '#blog' },
+    { name: 'Articles', path: '#articles' },
   ]
   return (
     <motion.nav

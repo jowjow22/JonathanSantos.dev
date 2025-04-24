@@ -1,0 +1,80 @@
+'use client'
+
+import { Button } from '@/app/components/Button/Button'
+import { Card } from '@/app/components/Card/Card'
+import { Typography } from '@/app/components/Typography/Typography'
+import { IconMaximize } from '@tabler/icons-react'
+import Link from 'next/link'
+
+import { dateFormatter } from '@/app/helpers/date-formater'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel'
+import { motion } from 'motion/react'
+
+type Article = {
+  id: string
+  url: string
+  cover_image: string
+  title: string
+  published_at: string
+  description: string
+}
+
+export const ArticlesSection = ({ articles }: { articles: Article[] }) => {
+  const MotionCarouselItem = motion(CarouselItem)
+
+  return (
+    <Carousel
+      opts={{
+        align: 'start',
+      }}
+      className="w-full"
+    >
+      <CarouselContent>
+        {articles.map((article, index: number) => (
+          <Link key={article.id} href={article.url} target="_blank">
+            <MotionCarouselItem
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              className="md:basis-1/2 xl:basis-1/3"
+            >
+              <Card>
+                <Card.Header
+                  className="flex justify-between items-center"
+                  image={{
+                    src: article.cover_image,
+                    alt: article.title,
+                  }}
+                >
+                  <div className="flex flex-col items-start w-full">
+                    <Typography.Paragraph>
+                      {dateFormatter(article.published_at)}
+                    </Typography.Paragraph>
+                    <Typography.H4 className="font-semibold text-white! max-h-22 max-w-4/5 overflow-y-hidden">
+                      {article.title.length > 40
+                        ? `${article.title.slice(0, 40)}...`
+                        : article.title}
+                    </Typography.H4>
+                  </div>
+                  <Button onlyIcon icon={<IconMaximize size={20} />} />
+                </Card.Header>
+                <Card.Content>
+                  <p>{article.description}</p>
+                </Card.Content>
+              </Card>
+            </MotionCarouselItem>
+          </Link>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious className="rounded-sm bg-indigo-600 border-none hidden sm:flex" />
+      <CarouselNext className="rounded-sm bg-indigo-600 border-none hidden sm:flex" />
+    </Carousel>
+  )
+}
