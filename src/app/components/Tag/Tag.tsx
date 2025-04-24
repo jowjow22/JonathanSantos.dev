@@ -9,7 +9,7 @@ interface ITagProps {
 }
 
 export const Tag = ({ text, icon: Icon, disabled, color }: ITagProps) => {
-  const iconElement = Icon ? <Icon size={10} className="text-zinc-200" /> : null
+  const iconElement = Icon ? <Icon size={15} className="text-zinc-200" /> : null
   return (
     <div
       className={`flex items-center gap-x-2 rounded-full px-4 py-2 max-h-fit text-sm font-bold text-zinc-200 bg-zinc-800 ${

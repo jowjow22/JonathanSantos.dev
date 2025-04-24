@@ -5,7 +5,13 @@ import { Card } from '@/app/components/Card/Card'
 import { Tag } from '@/app/components/Tag/Tag'
 import { TagGroup } from '@/app/components/TagGroup/TagGroup'
 import { Typography } from '@/app/components/Typography/Typography'
-import { IconMaximize } from '@tabler/icons-react'
+import {
+  IconBooks,
+  IconBrandTailwind,
+  IconBrandTypescript,
+  IconBrandVue,
+  IconMaximize,
+} from '@tabler/icons-react'
 
 import {
   Carousel,
@@ -18,6 +24,12 @@ import { motion } from 'motion/react'
 
 export const ProjectsSection = () => {
   const MotionCarouselItem = motion(CarouselItem)
+  const tags = [
+    { text: 'Vue', icon: IconBrandVue, color: 'bg-green-500' },
+    { text: 'Typescript', icon: IconBrandTypescript, color: 'bg-blue-500' },
+    { text: 'Pinia', icon: IconBooks, color: 'bg-yellow-500' },
+    { text: 'Tailwind', icon: IconBrandTailwind, color: 'bg-purple-500' },
+  ]
   return (
     <Carousel
       opts={{
@@ -50,10 +62,15 @@ export const ProjectsSection = () => {
               </Card.Content>
               <Card.Footer>
                 <TagGroup>
-                  <Tag icon={IconMaximize} text="Vue" />
-                  <Tag icon={IconMaximize} text="Typescript" />
-                  <Tag icon={IconMaximize} text="Typescript" />
-                  <Tag icon={IconMaximize} text="Typescript" />
+                  {tags.map((tag, index) => (
+                    <Tag
+                      key={index}
+                      icon={tag.icon}
+                      className={`text-white ${tag.color}`}
+                      color={tag.color}
+                      text={tag.text}
+                    />
+                  ))}
                 </TagGroup>
               </Card.Footer>
             </Card>
