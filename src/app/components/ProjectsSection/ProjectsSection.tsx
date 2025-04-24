@@ -66,7 +66,6 @@ export const ProjectsSection = () => {
                     <Tag
                       key={index}
                       icon={tag.icon}
-                      className={`text-white ${tag.color}`}
                       color={tag.color}
                       text={tag.text}
                     />
