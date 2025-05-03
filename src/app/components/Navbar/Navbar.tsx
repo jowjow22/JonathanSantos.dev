@@ -10,6 +10,7 @@ export const Navbar = () => {
     { name: 'About', path: '#about' },
     { name: 'Projects', path: '#projects' },
     { name: 'Articles', path: '#articles' },
+    { name: 'Contact', path: '#contact' },
   ]
   return (
     <motion.nav

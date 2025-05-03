@@ -3,7 +3,6 @@ import { Button } from '@/app/components/Button/Button'
 import { ProfileImage } from '@/app/components/ProfileImage/ProfileImage'
 import { Typography } from '@/app/components/Typography/Typography'
 import {
-  IconArrowLeft,
   IconBrandGithub,
   IconBrandLinkedinFilled,
   IconCoffee,
@@ -48,7 +47,7 @@ export default async function Home() {
           </Reveal>
           <Reveal width="w-full">
             <fieldset className="flex justify-between flex-col gap-y-4 lg:flex-row">
-              <div className="flex gap-x-4 w-full justify-center">
+              <div className="flex gap-x-4 w-full justify-center lg:justify-start">
                 <Button>My Career</Button>
                 <Button variant="secondary" icon={<IconCoffee size={20} />}>
                   Buy me a coffee
@@ -87,12 +86,12 @@ export default async function Home() {
         <Typography.H1>Blog</Typography.H1>
         <ArticlesSection articles={articles} />
       </section>
-      <Button
-        icon={<IconArrowLeft color="white" size={20} />}
-        onlyIcon
-        disabled
-        className="fixed bottom-10 right-10 text-white"
-      />
+      <section
+        className="w-full h-screen flex flex-col items-start justify-center px-4 xs:px-8 sm:px-26 lg:px-36 gap-y-8"
+        id="contact"
+      >
+        <Typography.H1>Contact</Typography.H1>
+      </section>
     </>
   )
 }
