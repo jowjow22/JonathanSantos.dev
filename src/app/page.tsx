@@ -10,12 +10,14 @@ import {
 } from '@tabler/icons-react'
 import Link from 'next/link'
 import { ArticlesSection } from './components/ArticlesSection/ArticlesSection'
+import { ContactForm } from './components/ContactForm/ContactForm'
 import { ProjectsSection } from './components/ProjectsSection/ProjectsSection'
 
 import { fetchArticles } from '@/app/server/actions/articles'
 
 export default async function Home() {
   const articles = await fetchArticles()
+
   return (
     <>
       <section
@@ -90,7 +92,10 @@ export default async function Home() {
         className="w-full h-screen flex flex-col items-start justify-center px-4 xs:px-8 sm:px-26 lg:px-36 gap-y-8"
         id="contact"
       >
-        <Typography.H1>Contact</Typography.H1>
+        <Typography.H1>Want to know more about me?</Typography.H1>
+        <div className="w-full flex flex-col">
+          <ContactForm />
+        </div>
       </section>
     </>
   )

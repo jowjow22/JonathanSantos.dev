@@ -3,5 +3,16 @@
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": "explicit",
         "source.organizeImports": "explicit"
+    },
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "yaml": false,
+        "javascript": false,
+        "c": true,
+        "typescript": true,
+        "csharp": true
     }
 }

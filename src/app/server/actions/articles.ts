@@ -1,6 +1,6 @@
 'use server'
 
-import { env } from '@/app/env'
+import { env } from '@/lib/env'
 export async function fetchArticles() {
   const res = await fetch('https://dev.to/api/articles/me/published', {
     headers: {

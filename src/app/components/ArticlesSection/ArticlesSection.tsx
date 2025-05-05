@@ -6,7 +6,6 @@ import { Typography } from '@/app/components/Typography/Typography'
 import { IconMaximize } from '@tabler/icons-react'
 import Link from 'next/link'
 
-import { dateFormatter } from '@/app/helpers/date-formater'
 import {
   Carousel,
   CarouselContent,
@@ -14,6 +13,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
+import { dateFormatter } from '@/lib/helpers/date-formater'
 import { motion } from 'motion/react'
 
 type Article = {

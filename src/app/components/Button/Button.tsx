@@ -8,6 +8,7 @@ interface IButtonProps
   onlyIcon?: boolean
   icon?: React.ReactNode
   disabled?: boolean
+  className?: string
   children?: React.ReactNode
 }
 
@@ -16,6 +17,7 @@ export const Button = ({
   variant = 'primary',
   disabled,
   icon,
+  className,
   onlyIcon,
   ...rest
 }: IButtonProps) => {
@@ -23,7 +25,7 @@ export const Button = ({
 
   return (
     <motion.button
-      className={class_variants}
+      className={`${class_variants} ${className}`}
       disabled={disabled}
       whileTap={{
         scale: 0.95,
