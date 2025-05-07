@@ -1,8 +1,38 @@
 import { env } from '@/lib/env'
-import { Resend } from 'resend'
+import nodemailer from 'nodemailer'
 import { z } from 'zod'
 
 
+async function sendEmail(
+    name: string,
+    subject: string,
+    email: string,
+    message: string
+) {
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            type: 'OAuth2',
+            user: env.MY_CONTACT_EMAIL,
+            clientId:   env.GOOGLE_CLIENT_ID,
+            clientSecret: env.GOOGLE_CLIENT_SECRET,
+            refreshToken: env.GOOGLE_REFRESH_TOKEN,
+        },
+    })
+
+    return await transporter.sendMail({
+        from: `${name} <${email}>`,
+        to: env.MY_CONTACT_EMAIL,
+        subject: subject,
+        html: `
+            <h1>Contact Form</h1>
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Message:</strong> ${message}</p>
+        `,
+        
+    })
+}
 export async function POST(request: Request) {
     const validator = z.object({
         name: z.string().min(1, { message: 'Name is required' }),
@@ -15,21 +45,18 @@ export async function POST(request: Request) {
         const data = validator.parse(body)
         const { name, subject, email, message } = data
 
-        const resend = new Resend(env.RESEND_API_KEY)
+        const info = await sendEmail(
+            name,
+            subject,
+            email,
+            message
+        )
 
-        await resend.emails.send({
-            from: email,
-            to: env.MY_CONTACT_EMAIL,
-            subject: subject,
-            html:`
-                <h1>Contact Form Submission</h1>
-                <p><strong>Name:</strong> ${name}</p>
-                <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Message:</strong></p>
-                <p>${message}</p>
-            `,
-        })
-        return Response.json({ message: 'Email sent successfully' }, { status: 200 })
+      
+        return Response.json(
+            { message: 'Email sent successfully', data: info },
+            { status: 200 }
+        )
     }
     catch (error) {
         if (error instanceof z.ZodError) {
