@@ -1,39 +1,57 @@
-interface ITextFieldProps {
+import { textField } from './text-field.variants'
+
+type ITextFieldProps = {
+  type?: 'text' | 'long' | 'email' | 'password'
   label: string
   name: string
-  long?: boolean
-}
+  error?: boolean
+  errorMessage?: string
+} & (
+  | ({
+      type?: 'text' | 'email' | 'password'
+    } & React.InputHTMLAttributes<HTMLInputElement>)
+  | ({ type: 'long' } & React.TextareaHTMLAttributes<HTMLTextAreaElement>)
+)
 
-export const TextField = ({ label, name, long }: ITextFieldProps) => {
+export const TextField = ({
+  label,
+  name,
+  placeholder,
+  type = 'text',
+  error = false,
+  errorMessage,
+  ...rest
+}: ITextFieldProps) => {
+  const currentVariant = textField({ variant: error ? 'error' : 'default' })
+
   return (
-    <div className="relative bg-inherit">
-      {long ? (
+    <div className="bg-inherit text-start flex flex-col gap-y-2">
+      <label htmlFor={name} className="text-sm">
+        {label}
+      </label>
+      {type === 'long' ? (
         <textarea
           name={name}
           id={name}
-          className="w-full border-2 rounded px-3 py-2 border-gray-600/50 peer placeholder-transparent focus:outline-none"
+          className={currentVariant}
+          autoComplete="off"
+          placeholder={placeholder}
+          {...(rest as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
         />
       ) : (
         <input
-          type="text"
+          type={type}
           name={name}
           id={name}
-          className="w-full border-2 rounded px-3 py-2 border-gray-600/50 peer placeholder-transparent focus:outline-none"
+          className={currentVariant}
+          {...(rest as React.InputHTMLAttributes<HTMLInputElement>)}
         />
       )}
-      <label
-        htmlFor={name}
-        className="absolute left-3 top-2 text-sm transition-all px-1
-        peer-placeholder-shown:text-base peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2
-        peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:text-sm peer-focus:bg-inherit
-        peer-focus:bg-inherit peer-focus:px-1 peer-focus:text-gray-400
-        peer-focus:text-gray-400 peer-focus:font-normal
-        peer-focus:bg-inherit peer-focus:border-gray-400
-        peer-focus:border-gray-400 peer-focus:rounded
-        peer-focus:transition-all"
-      >
-        {label}
-      </label>
+      {error && (
+        <span className="text-red-500 text-xs">
+          {errorMessage || 'This field is required'}
+        </span>
+      )}
     </div>
   )
 }

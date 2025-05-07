@@ -35,7 +35,7 @@ export const ArticlesSection = ({ articles }: { articles: Article[] }) => {
       }}
       className="w-full"
     >
-      <CarouselContent>
+      <CarouselContent className="py-4 px-2">
         {articles.map((article, index: number) => (
           <Link key={article.id} href={article.url} target="_blank">
             <MotionCarouselItem

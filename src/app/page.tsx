@@ -21,7 +21,7 @@ export default async function Home() {
   return (
     <>
       <section
-        className="w-full h-screen flex flex-col items-center justify-center px-16 md:flex-row-reverse md:gap-x-[5%]"
+        className="w-full h-screen flex flex-col items-center justify-center px-16 md:flex-row-reverse md:gap-x-[5%] scroll-mt-16 lg:scroll-mt-0"
         id="about"
       >
         <ProfileImage />
@@ -89,14 +89,39 @@ export default async function Home() {
         <ArticlesSection articles={articles} />
       </section>
       <section
-        className="w-full h-screen flex flex-col items-start justify-center px-4 xs:px-8 sm:px-26 lg:px-36 gap-y-8"
+        className="w-full h-screen flex flex-col items-center justify-center px-4 xs:px-8 sm:px-26 lg:px-36 gap-y-8 lg:flex-row lg:gap-x-12 scroll-mt-16 lg:items-start lg:scroll-mt-42"
         id="contact"
       >
-        <Typography.H1>Want to know more about me?</Typography.H1>
-        <div className="w-full flex flex-col">
+        <div className="flex flex-col">
+          <Typography.H1>Want to know more about me?</Typography.H1>
+          <Typography.Paragraph className="max-w-2xl font-poppins hidden lg:block font-thin">
+            If you have any questions or want to know more about me, feel free
+            to send me a message. I will be happy to help you!
+          </Typography.Paragraph>
+        </div>
+        <div className="w-full flex justify-center">
           <ContactForm />
         </div>
       </section>
+      <footer className="w-full py-6 gap-y-4 flex flex-col items-center justify-center">
+        <Typography.Paragraph className="font-light!">
+          © 2025 Jonathan Santos. All rights reserved.
+        </Typography.Paragraph>
+        <div className="flex justify-around w-2xs">
+          <Link href="https://github.com/jowjow22" target="_blank">
+            <IconBrandGithub size={20} />
+          </Link>
+          <Link
+            href="https://www.linkedin.com/in/jonathansantossilva/"
+            target="_blank"
+          >
+            <IconBrandLinkedinFilled size={20} />
+          </Link>
+          <Link href="mailto:jonathan224santos@gmail.com">
+            <IconMail size={20} />
+          </Link>
+        </div>
+      </footer>
     </>
   )
 }

@@ -37,7 +37,7 @@ export const ProjectsSection = () => {
       }}
       className="w-full"
     >
-      <CarouselContent>
+      <CarouselContent className="py-4 px-2">
         {Array.from({ length: 6 }, (_, index) => (
           <MotionCarouselItem
             initial={{ opacity: 0, y: 20 }}

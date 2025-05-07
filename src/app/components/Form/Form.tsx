@@ -1,46 +1,59 @@
 'use client'
 
-import { createContext } from 'react'
-import { ZodSchema } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+import React from 'react'
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
+import { ZodType, z } from 'zod'
 import { TextField } from './components/Textfield/Textfield'
-interface IFormProps<T> {
-  validator: ZodSchema
-  onSuccess?: (_data: T) => void
+interface IFormProps<T extends ZodType> {
+  validator: T
+  onSuccess: SubmitHandler<z.infer<T>>
   onError?: (_error: unknown) => void
   children?: React.ReactNode
 }
 
-export const FormContext = createContext({})
-export const FormProvider = FormContext.Provider
-
-export const Form = <T,>({
+export const Form = <T extends ZodType>({
   validator,
   onSuccess,
   onError,
   children,
 }: IFormProps<T>) => {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const formData = new FormData(event.currentTarget)
-    const data = Object.fromEntries(formData.entries())
-    const result = validator.safeParse(data)
+  const methods = useForm({
+    resolver: zodResolver(validator),
+  })
 
-    if(onSuccess && result.success) {
-      onSuccess(result.data as T)
-    }
-    if(onError && !result.success) {
-      onError(result.error)
-    }
-  }
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = methods
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-y-4">
-      <FormProvider value={{ validator, onSuccess, onError }}>
-        {children}
-      </FormProvider>
-    </form>
+    <FormProvider {...methods}>
+      <form
+        onSubmit={handleSubmit(onSuccess, onError)}
+        className="flex flex-col gap-y-4"
+      >
+        {React.Children.map(children, (child) => {
+          const childrenType = child as {
+            props: { name: string; error?: boolean; errorMessage?: string }
+          }
+          if (
+            React.isValidElement(child) &&
+            typeof childrenType.props.name === 'string'
+          ) {
+            return React.cloneElement(child, {
+              ...childrenType.props,
+              ...register(childrenType.props.name),
+              error: Boolean(errors[childrenType.props.name]),
+              errorMessage: errors[childrenType.props.name]?.message,
+            } as typeof childrenType.props)
+          }
+          return child
+        })}
+      </form>
+    </FormProvider>
   )
 }
-
 
 Form.TextField = TextField
