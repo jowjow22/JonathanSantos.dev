@@ -14,16 +14,8 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel'
 import { dateFormatter } from '@/lib/helpers/date-formater'
+import { Article } from '@/lib/types/articles'
 import { motion } from 'motion/react'
-
-type Article = {
-  id: string
-  url: string
-  cover_image: string
-  title: string
-  published_at: string
-  description: string
-}
 
 export const ArticlesSection = ({ articles }: { articles: Article[] }) => {
   const MotionCarouselItem = motion(CarouselItem)

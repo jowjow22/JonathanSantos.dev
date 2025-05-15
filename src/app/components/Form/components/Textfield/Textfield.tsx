@@ -1,57 +1,71 @@
-import { textField } from './text-field.variants'
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { cn } from '@/lib/utils'
+import { ControllerProps, FieldPath, FieldValues } from 'react-hook-form'
 
-type ITextFieldProps = {
-  type?: 'text' | 'long' | 'email' | 'password'
-  label: string
-  name: string
-  error?: boolean
-  errorMessage?: string
-} & (
-  | ({
-      type?: 'text' | 'email' | 'password'
-    } & React.InputHTMLAttributes<HTMLInputElement>)
-  | ({ type: 'long' } & React.TextareaHTMLAttributes<HTMLTextAreaElement>)
-)
+interface TextFieldProps<
+  TFieldValues extends FieldValues = FieldValues,
+  TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
+> {
+  label?: string
+  name: TName
+  type?: string
+  placeholder?: string
+  id?: string
+  control?: ControllerProps<TFieldValues, TName>['control']
+}
 
-export const TextField = ({
+export function TextField<
+  TFieldValues extends FieldValues,
+  TName extends FieldPath<TFieldValues>,
+>({
   label,
   name,
+  id,
   placeholder,
-  type = 'text',
-  error = false,
-  errorMessage,
-  ...rest
-}: ITextFieldProps) => {
-  const currentVariant = textField({ variant: error ? 'error' : 'default' })
-
+  type,
+  control,
+}: TextFieldProps<TFieldValues, TName>) {
   return (
-    <div className="bg-inherit text-start flex flex-col gap-y-2">
-      <label htmlFor={name} className="text-sm">
-        {label}
-      </label>
-      {type === 'long' ? (
-        <textarea
-          name={name}
-          id={name}
-          className={currentVariant}
-          autoComplete="off"
-          placeholder={placeholder}
-          {...(rest as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
-        />
-      ) : (
-        <input
-          type={type}
-          name={name}
-          id={name}
-          className={currentVariant}
-          {...(rest as React.InputHTMLAttributes<HTMLInputElement>)}
-        />
+    <FormField
+      name={name}
+      control={control}
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel className={cn('text-sm font-poppins')}>{label}</FormLabel>
+          <FormControl>
+            {type === 'long' ? (
+              <Textarea
+                id={id}
+                placeholder={placeholder}
+                {...field}
+                className={cn(
+                  'resize-none',
+                  'border-zinc-500 placeholder:text-muted-foreground aria-invalid:placeholder:text-destructive/50 focus-visible:border-indigo-700 focus-visible:ring-indigo-700/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 font-poppins text-xs'
+                )}
+              />
+            ) : (
+              <Input
+                id={id}
+                placeholder={placeholder}
+                type={type}
+                {...field}
+                className={cn(
+                  'border-zinc-500 placeholder:text-muted-foreground aria-invalid:placeholder:text-destructive/50 focus-visible:border-indigo-700 focus-visible:ring-indigo-700/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 font-poppins text-xs'
+                )}
+              />
+            )}
+          </FormControl>
+          <FormMessage className={cn('text-start text-xs')} />
+        </FormItem>
       )}
-      {error && (
-        <span className="text-red-500 text-xs">
-          {errorMessage || 'This field is required'}
-        </span>
-      )}
-    </div>
+    />
   )
 }

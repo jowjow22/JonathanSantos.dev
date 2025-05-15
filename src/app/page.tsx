@@ -14,9 +14,10 @@ import { ContactForm } from './components/ContactForm/ContactForm'
 import { ProjectsSection } from './components/ProjectsSection/ProjectsSection'
 
 import { fetchArticles } from '@/app/server/actions/articles'
+import { Article } from '@/lib/types/articles'
 
 export default async function Home() {
-  const articles = await fetchArticles()
+  const articles: Article[] = await fetchArticles()
 
   return (
     <>

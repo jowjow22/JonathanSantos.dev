@@ -1,58 +1,35 @@
 'use client'
 
-import { zodResolver } from '@hookform/resolvers/zod'
+import { Form as ShadCnForm } from '@/components/ui/form'
 import React from 'react'
-import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
-import { ZodType, z } from 'zod'
+import { UseFormReturn } from 'react-hook-form'
+import { z, ZodType } from 'zod'
 import { TextField } from './components/Textfield/Textfield'
+
 interface IFormProps<T extends ZodType> {
-  validator: T
-  onSuccess: SubmitHandler<z.infer<T>>
-  onError?: (_error: unknown) => void
-  children?: React.ReactNode
+  form: UseFormReturn<z.infer<T>>
+  onSuccess: (_data: z.infer<T>) => void
+  onError: (_error: z.infer<T>) => void
+  className?: string
+  children: React.ReactNode
 }
 
 export const Form = <T extends ZodType>({
-  validator,
+  form,
+  children,
   onSuccess,
   onError,
-  children,
+  className,
 }: IFormProps<T>) => {
-  const methods = useForm({
-    resolver: zodResolver(validator),
-  })
-
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = methods
-
   return (
-    <FormProvider {...methods}>
+    <ShadCnForm {...form}>
       <form
-        onSubmit={handleSubmit(onSuccess, onError)}
-        className="flex flex-col gap-y-4"
+        onSubmit={form.handleSubmit(onSuccess, onError)}
+        className={className}
       >
-        {React.Children.map(children, (child) => {
-          const childrenType = child as {
-            props: { name: string; error?: boolean; errorMessage?: string }
-          }
-          if (
-            React.isValidElement(child) &&
-            typeof childrenType.props.name === 'string'
-          ) {
-            return React.cloneElement(child, {
-              ...childrenType.props,
-              ...register(childrenType.props.name),
-              error: Boolean(errors[childrenType.props.name]),
-              errorMessage: errors[childrenType.props.name]?.message,
-            } as typeof childrenType.props)
-          }
-          return child
-        })}
+        {children}
       </form>
-    </FormProvider>
+    </ShadCnForm>
   )
 }
 
