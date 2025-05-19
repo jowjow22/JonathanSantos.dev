@@ -7,10 +7,10 @@ import { useState } from 'react'
 export const Navbar = () => {
   const [selectedLink, setSelectedLink] = useState<number>(0)
   const links = [
-    { name: 'About', path: '#about' },
-    { name: 'Projects', path: '#projects' },
-    { name: 'Articles', path: '#articles' },
-    { name: 'Contact', path: '#contact' },
+    { id: 'about-section', name: 'About', path: '#about' },
+    { id: 'projects-section', name: 'Projects', path: '#projects' },
+    { id: 'articles-section', name: 'Articles', path: '#articles' },
+    { id: 'contact-section', name: 'Contact', path: '#contact' },
   ]
   return (
     <motion.nav
@@ -29,11 +29,13 @@ export const Navbar = () => {
                   : 'text-gray-600 hover:text-gray-400'
               } cursor-pointer transition-colors duration-200 relative`}
               layout
+              data-testid={`link-${link.id}`}
             >
               {link.name}
               {selectedLink === index && (
                 <motion.div
                   className="w-full h-0.5 rounded-lg absolute bg-gray-200"
+                  data-testid="underline"
                   layoutId="underline"
                 />
               )}

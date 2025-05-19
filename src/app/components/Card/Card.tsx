@@ -16,6 +16,7 @@ const CardHeader = ({
   children,
   className,
   image,
+  dataTestId = 'card-header',
 }: {
   children: React.ReactNode
   className?: string
@@ -23,12 +24,16 @@ const CardHeader = ({
     src: string
     alt: string
   }
+  dataTestId?: string
 }) => {
   const { variant } = useContext(CardContext)
   const cardVariant = cardVariantSchema.parse(variant)
   const currentVariant = cardHeaderVariants({ variant: cardVariant })
   return (
-    <header className={`${currentVariant} ${className}`}>
+    <header
+      className={`${currentVariant} ${className}`}
+      data-testid={dataTestId}
+    >
       {variant === 'default' && (
         <>
           <Image
@@ -51,14 +56,17 @@ const CardHeader = ({
 
 const CardFooter = ({
   children,
-  className,
+  className = '',
+  dataTestId = 'card-footer',
 }: {
   children: React.ReactNode
   className?: string
+  dataTestId?: string
 }) => {
   return (
     <footer
       className={`flex gap-x-4 row-start-8 row-end-8 items-center ${className}`}
+      data-testid={dataTestId}
     >
       {children}
     </footer>
@@ -68,15 +76,20 @@ const CardFooter = ({
 const CardContent = ({
   children,
   className,
+  dataTestId = 'card-content',
 }: {
   children: React.ReactNode
   className?: string
+  dataTestId?: string
 }) => {
   const { variant } = useContext(CardContext)
   const cardVariant = cardVariantSchema.parse(variant)
   const currentVariant = cardContent({ variant: cardVariant })
   return (
-    <section className={`${currentVariant} ${className}`}>
+    <section
+      className={`${currentVariant} ${className}`}
+      data-testid={dataTestId}
+    >
       <div>{children}</div>
     </section>
   )
@@ -85,16 +98,26 @@ const CardContent = ({
 export const Card = ({
   children,
   variant,
+  className,
+  dataTestId = 'card',
+  image,
 }: {
   children: React.ReactNode
   variant?: 'default' | 'image_background'
+  className?: string
+  dataTestId?: string
+  image?: {
+    src: string
+    alt: string
+  }
 }) => {
   const currentVariant = cardVariants({ variant })
   const cardContainerVariant = cardContainerVariants({ variant })
 
   return (
     <motion.article
-      className={cardContainerVariant}
+      className={`${cardContainerVariant} ${className}`}
+      data-testid={dataTestId}
       whileHover={{ scale: 1.02 }}
       transition={{
         type: 'spring',
@@ -104,8 +127,8 @@ export const Card = ({
     >
       {variant === 'image_background' && (
         <Image
-          src="/sample-project.png"
-          alt="Project Title"
+          src={image?.src ?? '/sample-project.png'}
+          alt={image?.alt ?? 'Project Title'}
           fill
           sizes="100%"
           className="relative! object-cover max-h-full transition-transform duration-500 ease-in-out group-hover:scale-110"

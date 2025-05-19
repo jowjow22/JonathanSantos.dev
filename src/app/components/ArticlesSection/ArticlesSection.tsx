@@ -18,7 +18,7 @@ import { Article } from '@/lib/types/articles'
 import { motion } from 'motion/react'
 
 export const ArticlesSection = ({ articles }: { articles: Article[] }) => {
-  const MotionCarouselItem = motion(CarouselItem)
+  const MotionCarouselItem = motion.create(CarouselItem)
 
   return (
     <Carousel

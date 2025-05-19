@@ -17,7 +17,7 @@ export const Button = ({
   variant = 'primary',
   disabled,
   icon,
-  className,
+  className = '',
   onlyIcon,
   ...rest
 }: IButtonProps) => {

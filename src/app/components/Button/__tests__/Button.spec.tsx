@@ -10,7 +10,7 @@ describe('Button component', () => {
     render(<Button>Click Me</Button>)
     const button = screen.getByText('Click Me')
     expect(button).toBeInTheDocument()
-    expect(button).toHaveClass('bg-indigo-800 text-white')
+    expect(button).toHaveClass('bg-indigo-700 text-white')
   })
 
   it('renders with secondary variant', () => {
@@ -18,8 +18,10 @@ describe('Button component', () => {
     const button = screen.getByText('Click Me')
     expect(button).toBeInTheDocument()
     expect(button).toHaveClass('bg-transparent text-white')
-    expect(button).toHaveClass('border-2 border-solid border-gray-600/50')
-    expect(button).not.toHaveClass('bg-indigo-800 text-white')
+    expect(button).toHaveClass(
+      'bg-transparent text-white border-2 border-solid border-gray-600/50'
+    )
+    expect(button).not.toHaveClass('bg-indigo-700 text-white')
   })
 
   it('renders with onlyIcon and render the icon prop', () => {

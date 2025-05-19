@@ -23,7 +23,7 @@ import {
 import { motion } from 'motion/react'
 
 export const ProjectsSection = () => {
-  const MotionCarouselItem = motion(CarouselItem)
+  const MotionCarouselItem = motion.create(CarouselItem)
   const tags = [
     { text: 'Vue', icon: IconBrandVue, color: 'bg-green-500' },
     { text: 'Typescript', icon: IconBrandTypescript, color: 'bg-blue-500' },

@@ -17,6 +17,7 @@ export const ContactForm = () => {
   })
 
   const form = useForm<z.infer<typeof validator>>({
+    mode: 'onBlur',
     resolver: zodResolver(validator),
     defaultValues: {
       name: '',

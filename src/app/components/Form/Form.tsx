@@ -1,5 +1,3 @@
-'use client'
-
 import { Form as ShadCnForm } from '@/components/ui/form'
 import React from 'react'
 import { UseFormReturn } from 'react-hook-form'
