@@ -25,7 +25,7 @@ const H2 = ({
 }) => {
   return (
     <h2
-      className={`text-xl font-bold text-zinc-200 font-poppins lg:text-5xl ${className}`}
+      className={`text-3xl font-bold text-zinc-200 font-poppins lg:text-5xl ${className}`}
     >
       {children}
     </h2>

@@ -40,7 +40,7 @@ const CardHeader = ({
             src={image?.src ?? '/sample-project.png'}
             alt={image?.alt ?? 'Card image'}
             fill
-            style={{ borderRadius: '0.5rem' }}
+            style={{ borderRadius: '0.7rem' }}
             sizes="100%"
             className="relative! object-cover transition-transform duration-500 ease-in-out group-hover:scale-103 overflow-hidden"
           />

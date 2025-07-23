@@ -2,7 +2,6 @@
 
 import { Button } from '@/app/components/Button/Button'
 import { Form } from '@/app/components/Form/Form'
-import { Typography } from '@/app/components/Typography/Typography'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { IconMailFast } from '@tabler/icons-react'
 import { useForm } from 'react-hook-form'
@@ -44,17 +43,7 @@ export const ContactForm = () => {
   }
 
   return (
-    <article className="w-full bg-zinc-900 flex flex-col justify-center text-center px-4 py-8 rounded-lg lg:px-8 lg:py-16 lg:w-xl">
-      <Typography.H1 className="font-thin mb-5 lg:hidden">
-        Contact me!
-      </Typography.H1>
-      <Typography.H2 className="font-thin mb-5 hidden lg:block">
-        Contact me!
-      </Typography.H2>
-      <Typography.Paragraph className="font-thin lg:hidden">
-        Send me an email and we can schedule a meeting, and maybe work
-        together!!
-      </Typography.Paragraph>
+    <article className="w-full bg-zinc-900 px-4 py-8 rounded-lg lg:px-8 lg:py-16 lg:w-xl">
       <Form
         form={form}
         onError={() => {}}
