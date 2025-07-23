@@ -36,8 +36,6 @@ export const ContactForm = () => {
       body: JSON.stringify({ name, subject, email, message }),
     })
     if (!response.ok) {
-      const error = await response.json()
-      console.error('Error sending email:', error)
       return
     }
   }

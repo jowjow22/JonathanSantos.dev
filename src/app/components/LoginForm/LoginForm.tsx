@@ -4,7 +4,6 @@ import { Button } from '@/app/components/Button/Button'
 import { Form } from '@/app/components/Form/Form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { motion } from 'motion/react'
-import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Typography } from '../Typography/Typography'
@@ -22,8 +21,6 @@ export const LoginForm = ({ className }: IFormProps) => {
     secret: z.string().min(1, { message: 'Secret is required' }),
   })
 
-  const router = useRouter()
-
   const form = useForm<z.infer<typeof validator>>({
     mode: 'onBlur',
     resolver: zodResolver(validator),
@@ -33,13 +30,6 @@ export const LoginForm = ({ className }: IFormProps) => {
       secret: '',
     },
   })
-
-  const handleSuccessSubmit = async (data: z.infer<typeof validator>) => {
-    const { email, password, secret } = data
-    console.log('Form submitted:', { email, password, secret })
-    router.push('/dashboard')
-    // implement later
-  }
 
   return (
     <motion.article
@@ -51,7 +41,7 @@ export const LoginForm = ({ className }: IFormProps) => {
       <Form
         form={form}
         onError={() => {}}
-        onSuccess={handleSuccessSubmit}
+        onSuccess={() => {}}
         className="flex flex-col gap-y-8 max-h-fit  bg-zinc-900 px-8 py-12 rounded-lg lg:px-8 lg:py-12 lg:w-xl shadow-2xl shadow-indigo-800/80 max-w-1/4"
       >
         <Typography.H2 className="text-center">
