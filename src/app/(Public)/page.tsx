@@ -94,13 +94,13 @@ export default async function Home() {
         id="contact"
       >
         <div className="flex flex-col">
-          <Typography.H1>Want to know more about me?</Typography.H1>
+          <Typography.H1 className="text-center lg:text-left">Want to know more about me?</Typography.H1>
           <Typography.Paragraph className="max-w-2xl font-poppins hidden lg:block font-thin">
             If you have any questions or want to know more about me, feel free
             to send me a message. I will be happy to help you!
           </Typography.Paragraph>
         </div>
-        <div className="w-full flex justify-center">
+        <div className="w-full flex justify-center flex-col gap-y-6">
           <div className="flex flex-col justify-center text-center">
             <Typography.H1 className="font-thin mb-5 lg:hidden">
               Contact me!
