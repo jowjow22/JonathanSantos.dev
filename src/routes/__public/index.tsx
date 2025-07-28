@@ -1,33 +1,33 @@
-import { useState, useEffect } from "react";
-import { createFileRoute } from "@tanstack/react-router";
-import { Reveal } from "@/animations/Reveal";
-import { Button } from "@/components/Button/Button";
-import { ProfileImage } from "@/components/ProfileImage/ProfileImage";
-import { Typography } from "@/components/Typography/Typography";
+import { useState, useEffect } from 'react'
+import { createFileRoute } from '@tanstack/react-router'
+import { Reveal } from '@/animations/Reveal'
+import { Button } from '@/components/Button/Button'
+import { ProfileImage } from '@/components/ProfileImage/ProfileImage'
+import { Typography } from '@/components/Typography/Typography'
 import {
   IconBrandGithub,
   IconBrandLinkedinFilled,
   IconCoffee,
   IconMail,
-} from "@tabler/icons-react";
-import { ArticlesSection } from "../components/ArticlesSection/ArticlesSection";
-import { ContactForm } from "../components/ContactForm/ContactForm";
-import { ProjectsSection } from "../components/ProjectsSection/ProjectsSection";
+} from '@tabler/icons-react'
+import { ArticlesSection } from '@/components/ArticlesSection/ArticlesSection'
+import { ContactForm } from '@/components/ContactForm/ContactForm'
+import { ProjectsSection } from '@/components/ProjectsSection/ProjectsSection'
 
-import { type Article } from "@/lib/types/articles";
+import { type Article } from '@/lib/types/articles'
 
-import { fetchArticles } from "@/services/articles.service";
+import { fetchArticles } from '@/services/articles.service'
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute('/__public/')({
   component: Index,
-});
+})
 
 export default function Index() {
-  const [articles, setArticles] = useState<Article[]>([]);
+  const [articles, setArticles] = useState<Article[]>([])
 
   useEffect(() => {
-    fetchArticles(setArticles);
-  }, []);
+    fetchArticles(setArticles)
+  }, [])
 
   return (
     <>
@@ -148,5 +148,5 @@ export default function Index() {
         </div>
       </footer>
     </>
-  );
+  )
 }

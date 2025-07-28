@@ -9,68 +9,161 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AboutRouteImport } from './routes/about'
-import { Route as IndexRouteImport } from './routes/index'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as _publicRouteRouteImport } from './routes/__public/route'
+import { Route as _privateRouteRouteImport } from './routes/__private/route'
+import { Route as _publicIndexRouteImport } from './routes/__public/index'
+import { Route as _publicAboutRouteImport } from './routes/__public/about'
+import { Route as _privateDashboardRouteImport } from './routes/__private/dashboard'
 
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
+const _publicRouteRoute = _publicRouteRouteImport.update({
+  id: '/__public',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const _privateRouteRoute = _privateRouteRouteImport.update({
+  id: '/__private',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const _publicIndexRoute = _publicIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => _publicRouteRoute,
+} as any)
+const _publicAboutRoute = _publicAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => _publicRouteRoute,
+} as any)
+const _privateDashboardRoute = _privateDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => _privateRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/login': typeof LoginRoute
+  '/dashboard': typeof _privateDashboardRoute
+  '/about': typeof _publicAboutRoute
+  '/': typeof _publicIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/login': typeof LoginRoute
+  '/dashboard': typeof _privateDashboardRoute
+  '/about': typeof _publicAboutRoute
+  '/': typeof _publicIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/__private': typeof _privateRouteRouteWithChildren
+  '/__public': typeof _publicRouteRouteWithChildren
+  '/login': typeof LoginRoute
+  '/__private/dashboard': typeof _privateDashboardRoute
+  '/__public/about': typeof _publicAboutRoute
+  '/__public/': typeof _publicIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths: '/login' | '/dashboard' | '/about' | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to: '/login' | '/dashboard' | '/about' | '/'
+  id:
+    | '__root__'
+    | '/__private'
+    | '/__public'
+    | '/login'
+    | '/__private/dashboard'
+    | '/__public/about'
+    | '/__public/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
+  _privateRouteRoute: typeof _privateRouteRouteWithChildren
+  _publicRouteRoute: typeof _publicRouteRouteWithChildren
+  LoginRoute: typeof LoginRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
+    '/__public': {
+      id: '/__public'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof _publicRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/__private': {
+      id: '/__private'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof _privateRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/__public/': {
+      id: '/__public/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof _publicIndexRouteImport
+      parentRoute: typeof _publicRouteRoute
+    }
+    '/__public/about': {
+      id: '/__public/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof _publicAboutRouteImport
+      parentRoute: typeof _publicRouteRoute
+    }
+    '/__private/dashboard': {
+      id: '/__private/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof _privateDashboardRouteImport
+      parentRoute: typeof _privateRouteRoute
     }
   }
 }
 
+interface _privateRouteRouteChildren {
+  _privateDashboardRoute: typeof _privateDashboardRoute
+}
+
+const _privateRouteRouteChildren: _privateRouteRouteChildren = {
+  _privateDashboardRoute: _privateDashboardRoute,
+}
+
+const _privateRouteRouteWithChildren = _privateRouteRoute._addFileChildren(
+  _privateRouteRouteChildren,
+)
+
+interface _publicRouteRouteChildren {
+  _publicAboutRoute: typeof _publicAboutRoute
+  _publicIndexRoute: typeof _publicIndexRoute
+}
+
+const _publicRouteRouteChildren: _publicRouteRouteChildren = {
+  _publicAboutRoute: _publicAboutRoute,
+  _publicIndexRoute: _publicIndexRoute,
+}
+
+const _publicRouteRouteWithChildren = _publicRouteRoute._addFileChildren(
+  _publicRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
+  _privateRouteRoute: _privateRouteRouteWithChildren,
+  _publicRouteRoute: _publicRouteRouteWithChildren,
+  LoginRoute: LoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
