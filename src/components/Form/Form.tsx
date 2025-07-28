@@ -1,18 +1,18 @@
-import { Form as ShadCnForm } from "@/components/ui/form";
-import React from "react";
-import { type UseFormReturn } from "react-hook-form";
-import { z, ZodType } from "zod";
-import { TextField } from "./components/Textfield/Textfield";
+import { Form as ShadCnForm } from '@/components/ui/form'
+import React from 'react'
+import { type UseFormReturn, type FieldErrors } from 'react-hook-form'
+import { z, ZodType } from 'zod'
+import { TextField } from './components/Textfield/Textfield'
 
-interface IFormProps<T extends ZodType> {
-  form: UseFormReturn<z.infer<T>>;
-  onSuccess: (_data: z.infer<T>) => void;
-  onError: (_error: z.infer<T>) => void;
-  className?: string;
-  children: React.ReactNode;
+interface IFormProps<T extends ZodType<any, any, any>> {
+  form: UseFormReturn<z.infer<T>>
+  onSuccess: (_data: z.infer<T>) => void
+  onError: (_errors: FieldErrors<z.infer<T>>) => void
+  className?: string
+  children: React.ReactNode
 }
 
-export const Form = <T extends ZodType>({
+export const Form = <T extends ZodType<any, any, any>>({
   form,
   children,
   onSuccess,
@@ -28,7 +28,7 @@ export const Form = <T extends ZodType>({
         {children}
       </form>
     </ShadCnForm>
-  );
-};
+  )
+}
 
-Form.TextField = TextField;
+Form.TextField = TextField

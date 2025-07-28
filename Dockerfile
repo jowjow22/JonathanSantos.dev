@@ -18,6 +18,17 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Accept build arguments for client-side environment variables
+# Note: These will be visible in the client bundle
+ARG VITE_DEV_API_KEY
+ARG VITE_MY_CONTACT_EMAIL  
+ARG VITE_DEV_API_BASE_URL=https://dev.to/api
+
+# Set environment variables for Vite build
+ENV VITE_DEV_API_KEY=$VITE_DEV_API_KEY
+ENV VITE_MY_CONTACT_EMAIL=$VITE_MY_CONTACT_EMAIL
+ENV VITE_DEV_API_BASE_URL=$VITE_DEV_API_BASE_URL
+
 RUN npm run build
 
 FROM base AS runner
@@ -25,18 +36,19 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
+RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 reactjs
 
-COPY --from=builder /app/public ./public
+# Copy the built application from the builder stage
+COPY --from=builder --chown=reactjs:nodejs /app/dist ./dist
 
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+# Install serve globally to serve the static files
+RUN npm install -g serve
 
-USER nextjs
+USER reactjs
 
 EXPOSE 3000
 
 ENV PORT=3000
-ENV HOSTNAME=0.0.0.0
 
-CMD ["node", "server.js"]
+CMD ["serve", "-s", "dist", "-l", "3000"]
+

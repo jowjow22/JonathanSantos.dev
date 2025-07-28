@@ -19,16 +19,19 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      external: [
+        '**/*.spec.ts',
+        '**/*.spec.tsx',
+      ]
+    },
+  },
   server: {
     proxy: {
-      "/api": {
-        target: "http://localhost:3001",
-        changeOrigin: true,
-      },
       "/dev-api": {
-        target: "https://dev.to",
+        target: "https://dev.to/articles/me/published",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/dev-api/, "/api"),
       },
     },
   },
