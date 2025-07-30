@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-version:
+      nodejs: 22
+  pre-build:
+    commands:
+      - echo "Installing dependencies"
+      - npm pkg delete scripts.prepare
+      - npm ci
+  build:
+    commands:
+      - echo "Building the project"
+      - npm run build
+  
