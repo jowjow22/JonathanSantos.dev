@@ -35,7 +35,7 @@ export const ProjectsSection = () => {
       }}
       className="w-full"
     >
-      <CarouselContent className="py-4 px-2">
+      <CarouselContent className="px-2 py-4">
         {Array.from({ length: 6 }, (_, index) => (
           <MotionCarouselItem
             initial={{ opacity: 0, y: 20 }}
@@ -43,7 +43,7 @@ export const ProjectsSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
             key={`project-${index}`}
-            className="md:basis-1/2 xl:basis-1/3 px-6"
+            className="px-6 md:basis-1/2 xl:basis-1/3"
           >
             <Card variant="image_background">
               <Card.Header>
@@ -53,7 +53,7 @@ export const ProjectsSection = () => {
                 <Typography.H3 className="font-bold text-white!">
                   Project Title
                 </Typography.H3>
-                <p className="text-ellipsis whitespace-nowrap overflow-hidden">
+                <p className="overflow-hidden text-ellipsis whitespace-nowrap">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
@@ -74,8 +74,8 @@ export const ProjectsSection = () => {
           </MotionCarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="rounded-sm bg-indigo-600 border-none hidden sm:flex" />
-      <CarouselNext className="rounded-sm bg-indigo-600 border-none hidden sm:flex" />
+      <CarouselPrevious className="hidden rounded-sm border-none bg-indigo-600 sm:flex" />
+      <CarouselNext className="hidden rounded-sm border-none bg-indigo-600 sm:flex" />
     </Carousel>
   )
 }

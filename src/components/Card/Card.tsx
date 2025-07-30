@@ -39,9 +39,9 @@ const CardHeader = ({
             alt={image?.alt ?? 'Card image'}
             style={{ borderRadius: '0.7rem', width: '100%', height: '100%' }}
             loading="lazy"
-            className="relative! object-cover transition-transform duration-500 ease-in-out group-hover:scale-103 overflow-hidden"
+            className="relative! overflow-hidden object-cover transition-transform duration-500 ease-in-out group-hover:scale-103"
           />
-          <div className="absolute rounded-lg transition-transform duration-500 ease-in-out top-0 right-0 bg-black/70 lg:bg-linear-to-b lg:to-transparent lg:to-100% lg:from-black/80 lg:from-70% w-full h-full flex items-start justify-end p-3 group-hover:scale-103">
+          <div className="absolute top-0 right-0 flex h-full w-full items-start justify-end rounded-lg bg-black/70 p-3 transition-transform duration-500 ease-in-out group-hover:scale-103 lg:bg-linear-to-b lg:from-black/80 lg:from-70% lg:to-transparent lg:to-100%">
             {children}
           </div>
         </>
@@ -62,7 +62,7 @@ const CardFooter = ({
 }) => {
   return (
     <footer
-      className={`flex gap-x-4 row-start-8 row-end-8 items-center ${className}`}
+      className={`row-start-8 row-end-8 flex items-center gap-x-4 ${className}`}
       data-testid={dataTestId}
     >
       {children}
@@ -128,7 +128,7 @@ export const Card = ({
           src={image?.src ?? '/sample-project.png'}
           alt={image?.alt ?? 'Project Title'}
           loading="lazy"
-          className="relative! object-cover max-h-full transition-transform duration-500 ease-in-out group-hover:scale-110 w-full h-full"
+          className="relative! h-full max-h-full w-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-110"
         />
       )}
       <div className={currentVariant}>

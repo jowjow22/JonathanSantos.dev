@@ -9,11 +9,13 @@ export const ContactForm = () => {
   const validator = z.object({
     name: z.string().min(1, { message: 'Name is required' }),
     subject: z.string().min(1, { message: 'Subject is required' }),
-    email: z.string().email({ message: 'Invalid email address' }),
+    email: z.email({ message: 'Invalid email address' }),
     message: z.string().min(1, { message: 'Message is required' }),
   })
 
-  const form = useForm<z.infer<typeof validator>>({
+  type FormData = z.infer<typeof validator>
+
+  const form = useForm<FormData>({
     mode: 'onBlur',
     resolver: zodResolver(validator),
     defaultValues: {
@@ -24,7 +26,7 @@ export const ContactForm = () => {
     },
   })
 
-  const handleSuccessSubmit = async (data: z.infer<typeof validator>) => {
+  const handleSuccessSubmit = async (data: FormData) => {
     const { name, subject, email, message } = data
     const response = await fetch('/api/email', {
       method: 'POST',
@@ -39,8 +41,8 @@ export const ContactForm = () => {
   }
 
   return (
-    <article className="w-full bg-zinc-900 px-4 py-8 rounded-lg lg:px-8 lg:py-16 lg:w-xl mx-auto">
-      <Form
+    <article className="mx-auto w-full rounded-lg bg-zinc-900 px-4 py-8 lg:w-xl lg:px-8 lg:py-16">
+      <Form<typeof validator>
         form={form}
         onError={() => {}}
         onSuccess={handleSuccessSubmit}

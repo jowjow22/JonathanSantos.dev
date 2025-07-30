@@ -32,11 +32,11 @@ export default function Index() {
   return (
     <>
       <section
-        className="w-full h-screen flex flex-col items-center justify-center px-16 md:flex-row-reverse md:gap-x-[5%] scroll-mt-16 lg:scroll-mt-0"
+        className="flex h-screen w-full scroll-mt-16 flex-col items-center justify-center px-16 md:flex-row-reverse md:gap-x-[5%] lg:scroll-mt-0"
         id="about"
       >
         <ProfileImage />
-        <div className="max-w-2xl flex flex-col gap-y-4 items-center lg:items-start">
+        <div className="flex max-w-2xl flex-col items-center gap-y-4 lg:items-start">
           <Reveal>
             <Typography.H1 className="text-center md:text-start">
               Jonathan Santos
@@ -59,14 +59,14 @@ export default function Index() {
             </Typography.Paragraph>
           </Reveal>
           <Reveal width="w-full">
-            <fieldset className="flex justify-between flex-col gap-y-4 lg:flex-row">
-              <div className="flex gap-x-4 w-full justify-center lg:justify-start">
+            <fieldset className="flex flex-col justify-between gap-y-4 lg:flex-row">
+              <div className="flex w-full justify-center gap-x-4 lg:justify-start">
                 <Button>My Career</Button>
                 <Button variant="secondary" icon={<IconCoffee size={20} />}>
                   Buy me a coffee
                 </Button>
               </div>
-              <div className="flex gap-x-4 w-full items-center justify-center lg:justify-end">
+              <div className="flex w-full items-center justify-center gap-x-4 lg:justify-end">
                 <a href="https://github.com/jowjow22" target="_blank">
                   <Button icon={<IconBrandGithub size={20} />} onlyIcon />
                 </a>
@@ -86,38 +86,38 @@ export default function Index() {
         </div>
       </section>
       <section
-        className="w-full h-screen flex flex-col items-start justify-center px-4 xs:px-8 sm:px-26 lg:px-36 gap-y-8"
+        className="xs:px-8 flex h-screen w-full flex-col items-start justify-center gap-y-8 px-4 sm:px-26 lg:px-36"
         id="projects"
       >
         <Typography.H1>Projects</Typography.H1>
         <ProjectsSection />
       </section>
       <section
-        className="w-full h-screen flex flex-col items-start justify-center px-4 xs:px-8 sm:px-26 lg:px-36 gap-y-8"
+        className="xs:px-8 flex h-screen w-full flex-col items-start justify-center gap-y-8 px-4 sm:px-26 lg:px-36"
         id="articles"
       >
         <Typography.H1>Blog</Typography.H1>
         <ArticlesSection articles={articles} />
       </section>
       <section
-        className="w-full h-screen flex flex-col items-center justify-center px-4 xs:px-8 sm:px-26 lg:px-36 gap-y-8 lg:flex-row lg:gap-x-12 scroll-mt-16 lg:items-start lg:scroll-mt-42"
+        className="xs:px-8 flex h-screen w-full scroll-mt-16 flex-col items-center justify-center gap-y-8 px-4 sm:px-26 lg:scroll-mt-42 lg:flex-row lg:items-start lg:gap-x-12 lg:px-36"
         id="contact"
       >
         <div className="flex flex-col">
           <Typography.H1 className="text-center lg:text-left">
             Want to know more about me?
           </Typography.H1>
-          <Typography.Paragraph className="max-w-2xl font-poppins hidden lg:block font-thin">
+          <Typography.Paragraph className="font-poppins hidden max-w-2xl font-thin lg:block">
             If you have any questions or want to know more about me, feel free
             to send me a message. I will be happy to help you!
           </Typography.Paragraph>
         </div>
-        <div className="w-full flex justify-center flex-col gap-y-6">
+        <div className="flex w-full flex-col justify-center gap-y-6">
           <div className="flex flex-col justify-center text-center">
-            <Typography.H1 className="font-thin mb-5 lg:hidden">
+            <Typography.H1 className="mb-5 font-thin lg:hidden">
               Contact me!
             </Typography.H1>
-            <Typography.H2 className="font-thin mb-5 hidden lg:block">
+            <Typography.H2 className="mb-5 hidden font-thin lg:block">
               Contact me!
             </Typography.H2>
             <Typography.Paragraph className="font-thin lg:hidden">
@@ -128,11 +128,11 @@ export default function Index() {
           <ContactForm />
         </div>
       </section>
-      <footer className="w-full py-6 gap-y-4 flex flex-col items-center justify-center">
+      <footer className="flex w-full flex-col items-center justify-center gap-y-4 py-6">
         <Typography.Paragraph className="font-light!">
           © 2025 Jonathan Santos. All rights reserved.
         </Typography.Paragraph>
-        <div className="flex justify-around w-2xs">
+        <div className="flex w-2xs justify-around">
           <a href="https://github.com/jowjow22" target="_blank">
             <IconBrandGithub size={20} />
           </a>

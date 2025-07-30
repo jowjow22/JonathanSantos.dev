@@ -61,7 +61,7 @@ export const TagGroup = ({ children }: ITagGroupProps) => {
   }, [childrenArray])
 
   return (
-    <div ref={containerRef} className="flex gap-2 w-full">
+    <div ref={containerRef} className="flex w-full gap-2">
       {childrenArray.map((tag, index) => (
         <div
           key={index}

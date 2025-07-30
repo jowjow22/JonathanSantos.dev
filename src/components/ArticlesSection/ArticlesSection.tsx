@@ -24,7 +24,7 @@ export const ArticlesSection = ({ articles }: { articles: Article[] }) => {
       }}
       className="w-full"
     >
-      <CarouselContent className="py-4 px-2">
+      <CarouselContent className="px-2 py-4">
         {articles.map((article, index: number) => (
           <a key={article.id} href={article.url} target="_blank">
             <MotionCarouselItem
@@ -36,17 +36,17 @@ export const ArticlesSection = ({ articles }: { articles: Article[] }) => {
             >
               <Card>
                 <Card.Header
-                  className="flex justify-between items-center"
+                  className="flex items-center justify-between"
                   image={{
                     src: article.cover_image,
                     alt: article.title,
                   }}
                 >
-                  <div className="flex flex-col items-start w-full">
+                  <div className="flex w-full flex-col items-start">
                     <Typography.Paragraph>
                       {dateFormatter(article.published_at)}
                     </Typography.Paragraph>
-                    <Typography.H4 className="font-semibold text-white! max-h-22 max-w-4/5 overflow-y-hidden">
+                    <Typography.H4 className="max-h-22 max-w-4/5 overflow-y-hidden font-semibold text-white!">
                       {article.title.length > 40
                         ? `${article.title.slice(0, 40)}...`
                         : article.title}
@@ -62,8 +62,8 @@ export const ArticlesSection = ({ articles }: { articles: Article[] }) => {
           </a>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="rounded-sm bg-indigo-600 border-none hidden sm:flex" />
-      <CarouselNext className="rounded-sm bg-indigo-600 border-none hidden sm:flex" />
+      <CarouselPrevious className="hidden rounded-sm border-none bg-indigo-600 sm:flex" />
+      <CarouselNext className="hidden rounded-sm border-none bg-indigo-600 sm:flex" />
     </Carousel>
   )
 }

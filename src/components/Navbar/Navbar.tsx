@@ -12,11 +12,11 @@ export const Navbar = () => {
   ]
   return (
     <motion.nav
-      className="w-full py-5 sticky top-0 backdrop-blur-3xl bg-transparent mb-5 z-10"
+      className="sticky top-0 z-10 mb-5 w-full bg-transparent py-5 backdrop-blur-3xl"
       layout
       transition={{ duration: 0.5 }}
     >
-      <ol className="w-full flex flex-row items-center justify-center gap-x-4 list-none">
+      <ol className="flex w-full list-none flex-row items-center justify-center gap-x-4">
         {links.map((link, index) => (
           <Link to={link.path} key={index}>
             <motion.li
@@ -25,14 +25,14 @@ export const Navbar = () => {
                 selectedLink === index
                   ? 'text-gray-200'
                   : 'text-gray-600 hover:text-gray-400'
-              } cursor-pointer transition-colors duration-200 relative`}
+              } relative cursor-pointer transition-colors duration-200`}
               layout
               data-testid={`link-${link.id}`}
             >
               {link.name}
               {selectedLink === index && (
                 <motion.div
-                  className="w-full h-0.5 rounded-lg absolute bg-gray-200"
+                  className="absolute h-0.5 w-full rounded-lg bg-gray-200"
                   data-testid="underline"
                   layoutId="underline"
                 />

@@ -43,7 +43,7 @@ export function TextField<
       control={control}
       render={({ field }) => (
         <FormItem>
-          <FormLabel className={cn('text-sm font-poppins')}>{label}</FormLabel>
+          <FormLabel className={cn('font-poppins text-sm')}>{label}</FormLabel>
           <FormControl>
             {type === 'long' ? (
               <Textarea
@@ -52,7 +52,7 @@ export function TextField<
                 {...field}
                 className={cn(
                   'resize-none',
-                  'border-zinc-500 placeholder:text-muted-foreground aria-invalid:placeholder:text-destructive/50 focus-visible:border-indigo-700 focus-visible:ring-indigo-700/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 font-poppins text-xs'
+                  'placeholder:text-muted-foreground aria-invalid:placeholder:text-destructive/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 font-poppins border-zinc-500 text-xs focus-visible:border-indigo-700 focus-visible:ring-indigo-700/50'
                 )}
               />
             ) : (
@@ -62,7 +62,7 @@ export function TextField<
                 type={type}
                 {...field}
                 className={cn(
-                  'border-zinc-500 placeholder:text-muted-foreground aria-invalid:placeholder:text-destructive/50 focus-visible:border-indigo-700 focus-visible:ring-indigo-700/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 font-poppins text-xs'
+                  'placeholder:text-muted-foreground aria-invalid:placeholder:text-destructive/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 font-poppins border-zinc-500 text-xs focus-visible:border-indigo-700 focus-visible:ring-indigo-700/50'
                 )}
               />
             )}

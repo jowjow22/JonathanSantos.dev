@@ -12,7 +12,7 @@ export const ProfileImage = () => {
         alt="Jonathan Santos"
         width={250}
         height={250}
-        className="mb-8 md:w-sm min-w-3xs"
+        className="mb-8 min-w-3xs md:w-sm"
       />
     </motion.div>
   )

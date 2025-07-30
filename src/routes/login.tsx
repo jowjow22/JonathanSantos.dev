@@ -13,14 +13,16 @@ export const Route = createFileRoute('/login')({
 
 export default function Login() {
   const validator = z.object({
-    email: z.string().email({ message: 'Invalid email address' }),
+    email: z.email({ message: 'Invalid email address' }),
     password: z
       .string()
       .min(6, { message: 'Password must be at least 6 characters' }),
     secret: z.string().min(1, { message: 'Secret is required' }),
   })
 
-  const form = useForm<z.infer<typeof validator>>({
+  type FormData = z.infer<typeof validator>
+
+  const form = useForm<FormData>({
     mode: 'onBlur',
     resolver: zodResolver(validator),
     defaultValues: {
@@ -31,18 +33,18 @@ export default function Login() {
   })
 
   return (
-    <div className="bg-[url(/image-mesh-gradient.png)] overflow-hidden">
+    <div className="overflow-hidden bg-[url(/image-mesh-gradient.png)]">
       <motion.article
         animate={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: 10 }}
         transition={{ type: 'spring', bounce: 0.6 }}
-        className={`w-screen h-screen flex items-center justify-center overflow-hidden`}
+        className={`flex h-screen w-screen items-center justify-center overflow-hidden`}
       >
-        <Form
+        <Form<typeof validator>
           form={form}
           onError={() => {}}
           onSuccess={() => {}}
-          className="flex flex-col gap-y-8 max-h-fit  bg-zinc-900 px-8 py-12 rounded-lg lg:px-8 lg:py-12 lg:w-xl shadow-2xl shadow-indigo-800/80 max-w-1/4"
+          className="flex max-h-fit max-w-1/4 flex-col gap-y-8 rounded-lg bg-zinc-900 px-8 py-12 shadow-2xl shadow-indigo-800/80 lg:w-xl lg:px-8 lg:py-12"
         >
           <Typography.H2 className="text-center">
             Enter with Credentials

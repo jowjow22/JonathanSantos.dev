@@ -14,7 +14,7 @@ const variants = {
 }
 export const Reveal = ({ children, width = 'w-fit' }: IRevealProps) => {
   return (
-    <div className={`overflow-hidden relative ${width}`}>
+    <div className={`relative overflow-hidden ${width}`}>
       <motion.div
         initial="hidden"
         animate="visible"
@@ -34,7 +34,7 @@ export const Reveal = ({ children, width = 'w-fit' }: IRevealProps) => {
         initial="hidden"
         animate="visible"
         transition={{ duration: 0.5, ease: 'easeIn' }}
-        className="absolute top-0 bottom-4 left-0 right-0 bg-indigo-700 z-20 h-full"
+        className="absolute top-0 right-0 bottom-4 left-0 z-20 h-full bg-indigo-700"
       />
     </div>
   )

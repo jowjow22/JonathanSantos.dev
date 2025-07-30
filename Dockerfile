@@ -21,13 +21,11 @@ COPY . .
 # Accept build arguments for client-side environment variables
 # Note: These will be visible in the client bundle
 ARG VITE_DEV_API_KEY
-ARG VITE_MY_CONTACT_EMAIL  
-ARG VITE_DEV_API_BASE_URL=https://dev.to/api
+ARG VITE_MY_CONTACT_EMAIL 
 
 # Set environment variables for Vite build
 ENV VITE_DEV_API_KEY=$VITE_DEV_API_KEY
 ENV VITE_MY_CONTACT_EMAIL=$VITE_MY_CONTACT_EMAIL
-ENV VITE_DEV_API_BASE_URL=$VITE_DEV_API_BASE_URL
 
 RUN npm run build
 
