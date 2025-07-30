@@ -1,5 +1,7 @@
 import { createContext } from 'react'
 
-export const CardContext = createContext({
-  variant: 'default' as 'default' | 'image_background',
-})
+type CardContextType = {
+  variant: 'default' | 'image_background'
+}
+
+export const CardContext = createContext<CardContextType | undefined>(undefined)

@@ -1,6 +1,8 @@
 import { useMemo } from 'react'
 import { CardContext } from './card-context'
 
+export { CardContext }
+
 export default function CardContextProvider({
   children,
   variant,

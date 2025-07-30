@@ -23,7 +23,8 @@ const CardHeader = ({
   }
   dataTestId?: string
 }) => {
-  const { variant } = useContext(CardContext)
+  const context = useContext(CardContext)
+  const variant = context?.variant ?? 'default'
   const cardVariant = cardVariantSchema.parse(variant)
   const currentVariant = cardHeaderVariants({ variant: cardVariant })
   return (
@@ -78,7 +79,8 @@ const CardContent = ({
   className?: string
   dataTestId?: string
 }) => {
-  const { variant } = useContext(CardContext)
+  const context = useContext(CardContext)
+  const variant = context?.variant ?? 'default'
   const cardVariant = cardVariantSchema.parse(variant)
   const currentVariant = cardContent({ variant: cardVariant })
   return (
