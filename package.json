@@ -9,6 +9,7 @@
     "lint": "eslint . && prettier --write .",
     "ci:lint": "eslint . && prettier --check .",
     "ci:types": "tsc --noEmit",
+    "ci:test": "vitest",
     "test": "vitest run --coverage",
     "preview": "vite preview"
   },
