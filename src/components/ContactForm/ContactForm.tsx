@@ -1,42 +1,42 @@
-import { Button } from "@/components/Button/Button";
-import { Form } from "@/components/Form/Form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { IconMailFast } from "@tabler/icons-react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { Button } from '@/components/Button/Button'
+import { Form } from '@/components/Form/Form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { IconMailFast } from '@tabler/icons-react'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 
 export const ContactForm = () => {
   const validator = z.object({
-    name: z.string().min(1, { message: "Name is required" }),
-    subject: z.string().min(1, { message: "Subject is required" }),
-    email: z.string().email({ message: "Invalid email address" }),
-    message: z.string().min(1, { message: "Message is required" }),
-  });
+    name: z.string().min(1, { message: 'Name is required' }),
+    subject: z.string().min(1, { message: 'Subject is required' }),
+    email: z.string().email({ message: 'Invalid email address' }),
+    message: z.string().min(1, { message: 'Message is required' }),
+  })
 
   const form = useForm<z.infer<typeof validator>>({
-    mode: "onBlur",
+    mode: 'onBlur',
     resolver: zodResolver(validator),
     defaultValues: {
-      name: "",
-      subject: "",
-      email: "",
-      message: "",
+      name: '',
+      subject: '',
+      email: '',
+      message: '',
     },
-  });
+  })
 
   const handleSuccessSubmit = async (data: z.infer<typeof validator>) => {
-    const { name, subject, email, message } = data;
-    const response = await fetch("/api/email", {
-      method: "POST",
+    const { name, subject, email, message } = data
+    const response = await fetch('/api/email', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ name, subject, email, message }),
-    });
+    })
     if (!response.ok) {
-      return;
+      return
     }
-  };
+  }
 
   return (
     <article className="w-full bg-zinc-900 px-4 py-8 rounded-lg lg:px-8 lg:py-16 lg:w-xl mx-auto">
@@ -80,5 +80,5 @@ export const ContactForm = () => {
         </Button>
       </Form>
     </article>
-  );
-};
+  )
+}

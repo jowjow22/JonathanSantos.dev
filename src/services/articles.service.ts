@@ -1,6 +1,8 @@
 import { type Article } from '@/lib/types/articles'
 
-export async function fetchArticles(callback: (articles: Article[]) => void): Promise<Article[]> {
+export async function fetchArticles(
+  callback: (articles: Article[]) => void
+): Promise<Article[]> {
   try {
     const res = await fetch('https://dev.to/api/articles?username=jow')
 
@@ -13,7 +15,7 @@ export async function fetchArticles(callback: (articles: Article[]) => void): Pr
     return articles
   } catch (error) {
     console.error('Failed to fetch articles:', error)
-    
+
     const fallbackArticles: Article[] = []
     callback(fallbackArticles)
     return fallbackArticles

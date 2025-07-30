@@ -1,7 +1,7 @@
-import { Button } from "@/components/Button/Button";
-import { Card } from "@/components/Card/Card";
-import { Typography } from "@/components/Typography/Typography";
-import { IconMaximize } from "@tabler/icons-react";
+import { Button } from '@/components/Button/Button'
+import { Card } from '@/components/Card/Card'
+import { Typography } from '@/components/Typography/Typography'
+import { IconMaximize } from '@tabler/icons-react'
 
 import {
   Carousel,
@@ -9,18 +9,18 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
-import { dateFormatter } from "@/lib/helpers/date-formater";
-import { type Article } from "@/lib/types/articles";
-import { motion } from "motion/react";
+} from '@/components/ui/carousel'
+import { dateFormatter } from '@/lib/helpers/date-formater'
+import { type Article } from '@/lib/types/articles'
+import { motion } from 'motion/react'
 
 export const ArticlesSection = ({ articles }: { articles: Article[] }) => {
-  const MotionCarouselItem = motion.create(CarouselItem);
+  const MotionCarouselItem = motion.create(CarouselItem)
 
   return (
     <Carousel
       opts={{
-        align: "start",
+        align: 'start',
       }}
       className="w-full"
     >
@@ -65,5 +65,5 @@ export const ArticlesSection = ({ articles }: { articles: Article[] }) => {
       <CarouselPrevious className="rounded-sm bg-indigo-600 border-none hidden sm:flex" />
       <CarouselNext className="rounded-sm bg-indigo-600 border-none hidden sm:flex" />
     </Carousel>
-  );
-};
+  )
+}

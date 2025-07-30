@@ -1,16 +1,13 @@
-import { createContext, useMemo } from "react";
-
-export const CardContext = createContext({
-  variant: "default",
-});
+import { useMemo } from 'react'
+import { CardContext } from './card-context'
 
 export default function CardContextProvider({
   children,
   variant,
 }: Readonly<{
-  children: React.ReactNode;
-  variant: "default" | "image_background";
+  children: React.ReactNode
+  variant: 'default' | 'image_background'
 }>) {
-  const value = useMemo(() => ({ variant }), [variant]);
-  return <CardContext.Provider value={value}>{children}</CardContext.Provider>;
+  const value = useMemo(() => ({ variant }), [variant])
+  return <CardContext.Provider value={value}>{children}</CardContext.Provider>
 }

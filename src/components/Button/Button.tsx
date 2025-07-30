@@ -1,27 +1,27 @@
-import { type HTMLMotionProps } from "framer-motion";
-import * as motion from "motion/react-client";
-import { button as variants } from "./button.variants";
+import { type HTMLMotionProps } from 'framer-motion'
+import * as motion from 'motion/react-client'
+import { button as variants } from './button.variants'
 
 interface IButtonProps
-  extends Omit<HTMLMotionProps<"button">, "variant" | "children"> {
-  variant?: "primary" | "secondary";
-  onlyIcon?: boolean;
-  icon?: React.ReactNode;
-  disabled?: boolean;
-  className?: string;
-  children?: React.ReactNode;
+  extends Omit<HTMLMotionProps<'button'>, 'variant' | 'children'> {
+  variant?: 'primary' | 'secondary'
+  onlyIcon?: boolean
+  icon?: React.ReactNode
+  disabled?: boolean
+  className?: string
+  children?: React.ReactNode
 }
 
 export const Button = ({
   children,
-  variant = "primary",
+  variant = 'primary',
   disabled,
   icon,
-  className = "",
+  className = '',
   onlyIcon,
   ...rest
 }: IButtonProps) => {
-  const class_variants = variants({ variant, disabled, onlyIcon });
+  const class_variants = variants({ variant, disabled, onlyIcon })
 
   return (
     <motion.button
@@ -41,5 +41,5 @@ export const Button = ({
       {!onlyIcon && children}
       {icon}
     </motion.button>
-  );
-};
+  )
+}

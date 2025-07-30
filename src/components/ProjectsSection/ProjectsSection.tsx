@@ -1,15 +1,15 @@
-import { Button } from "@/components/Button/Button";
-import { Card } from "@/components/Card/Card";
-import { Tag } from "@/components/Tag/Tag";
-import { TagGroup } from "@/components/TagGroup/TagGroup";
-import { Typography } from "@/components/Typography/Typography";
+import { Button } from '@/components/Button/Button'
+import { Card } from '@/components/Card/Card'
+import { Tag } from '@/components/Tag/Tag'
+import { TagGroup } from '@/components/TagGroup/TagGroup'
+import { Typography } from '@/components/Typography/Typography'
 import {
   IconBooks,
   IconBrandTailwind,
   IconBrandTypescript,
   IconBrandVue,
   IconMaximize,
-} from "@tabler/icons-react";
+} from '@tabler/icons-react'
 
 import {
   Carousel,
@@ -17,21 +17,21 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
-import { motion } from "motion/react";
+} from '@/components/ui/carousel'
+import { motion } from 'motion/react'
 
 export const ProjectsSection = () => {
-  const MotionCarouselItem = motion.create(CarouselItem);
+  const MotionCarouselItem = motion.create(CarouselItem)
   const tags = [
-    { text: "Vue", icon: IconBrandVue, color: "bg-green-500" },
-    { text: "Typescript", icon: IconBrandTypescript, color: "bg-blue-500" },
-    { text: "Pinia", icon: IconBooks, color: "bg-yellow-500" },
-    { text: "Tailwind", icon: IconBrandTailwind, color: "bg-purple-500" },
-  ];
+    { text: 'Vue', icon: IconBrandVue, color: 'bg-green-500' },
+    { text: 'Typescript', icon: IconBrandTypescript, color: 'bg-blue-500' },
+    { text: 'Pinia', icon: IconBooks, color: 'bg-yellow-500' },
+    { text: 'Tailwind', icon: IconBrandTailwind, color: 'bg-purple-500' },
+  ]
   return (
     <Carousel
       opts={{
-        align: "start",
+        align: 'start',
       }}
       className="w-full"
     >
@@ -77,5 +77,5 @@ export const ProjectsSection = () => {
       <CarouselPrevious className="rounded-sm bg-indigo-600 border-none hidden sm:flex" />
       <CarouselNext className="rounded-sm bg-indigo-600 border-none hidden sm:flex" />
     </Carousel>
-  );
-};
+  )
+}

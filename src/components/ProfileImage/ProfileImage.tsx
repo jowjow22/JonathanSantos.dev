@@ -1,4 +1,4 @@
-import * as motion from "motion/react-client";
+import * as motion from 'motion/react-client'
 
 export const ProfileImage = () => {
   return (
@@ -15,5 +15,5 @@ export const ProfileImage = () => {
         className="mb-8 md:w-sm min-w-3xs"
       />
     </motion.div>
-  );
-};
+  )
+}
