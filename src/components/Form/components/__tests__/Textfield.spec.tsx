@@ -2,24 +2,27 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { act, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import React from 'react'
-import { FormProvider, useForm, type UseFormSetError } from 'react-hook-form'
+import {
+  FormProvider,
+  useForm,
+  type UseFormSetError,
+  type FieldValues,
+} from 'react-hook-form'
 import { describe, expect, it } from 'vitest'
 import { z } from 'zod'
 import { TextField } from '../Textfield/Textfield'
 
-let set_error: UseFormSetError<{
-  [key: string]: unknown
-}>
+let set_error: UseFormSetError<FieldValues>
 
 function renderWithForm(
   props: Parameters<typeof TextField>[0],
-  schema?: z.ZodSchema
+  schema?: z.ZodObject<z.ZodRawShape>
 ) {
   const validationSchema = z.object({
-    [props.name as string]: z.string().nonempty('Required'),
+    [props.name as string]: z.string().min(1, 'Required'),
   })
   const Wrapper: React.FC = () => {
-    const methods = useForm({
+    const methods = useForm<FieldValues>({
       resolver: zodResolver(schema ?? validationSchema),
       defaultValues: { [props.name as string]: '' },
       mode: 'onBlur',
