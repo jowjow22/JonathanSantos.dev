@@ -143,7 +143,7 @@ const _privateRouteRouteChildren: _privateRouteRouteChildren = {
 }
 
 const _privateRouteRouteWithChildren = _privateRouteRoute._addFileChildren(
-  _privateRouteRouteChildren
+  _privateRouteRouteChildren,
 )
 
 interface _publicRouteRouteChildren {
@@ -157,7 +157,7 @@ const _publicRouteRouteChildren: _publicRouteRouteChildren = {
 }
 
 const _publicRouteRouteWithChildren = _publicRouteRoute._addFileChildren(
-  _publicRouteRouteChildren
+  _publicRouteRouteChildren,
 )
 
 const rootRouteChildren: RootRouteChildren = {
