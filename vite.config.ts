@@ -19,6 +19,12 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  optimizeDeps: {
+    include: [
+      'lucide-react',
+      '@radix-ui/react-slot',
+    ],
+  },
   build: {
     rollupOptions: {
       external: ['**/*.spec.ts', '**/*.spec.tsx'],
