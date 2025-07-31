@@ -8,12 +8,23 @@ phases:
     commands:
       - echo "Installing dependencies"
       - npm pkg delete scripts.prepare
-      - npm ci
+      - echo "Node version info:"
+      - node --version
+      - npm --version
+      - echo "Attempting npm ci first"
+      - npm ci || (echo "npm ci failed, trying npm install" && rm -f package-lock.json && npm install)
+      - echo "Verifying installation"
+      - npm list lucide-react || echo "Warning: lucide-react not in npm list"
+      - test -d node_modules/lucide-react && echo "lucide-react directory exists" || echo "ERROR: lucide-react directory missing"
   build:
     commands:
       - echo "Building the project"
       - node --version
       - npm --version
+      - echo "Checking if lucide-react exists in node_modules"
+      - ls -la node_modules/lucide-react/ || echo "lucide-react not found in node_modules"
+      - echo "Checking package.json dependencies"
+      - grep -A 5 -B 5 "lucide-react" package.json
       - npm run build
   post_build:
     commands:
