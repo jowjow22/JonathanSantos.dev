@@ -9,11 +9,7 @@ phases:
       - echo "Installing dependencies"
       - npm pkg delete scripts.prepare
       - rm -rf node_modules
-      - rm -f package-lock.json
-      - npm install
-      - echo "Verifying lucide-react installation"
-      - npm list lucide-react
-      - ls -la node_modules/lucide-react/
+      - npm ci
   build:
     commands:
       - echo "Building the project"
