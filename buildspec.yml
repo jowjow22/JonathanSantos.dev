@@ -12,7 +12,13 @@ phases:
       - node --version
       - npm --version
       - echo "Attempting npm ci first"
-      - npm ci || (echo "npm ci failed, trying npm install" && rm -f package-lock.json && npm install)
+      - npm ci || echo "npm ci failed, will try npm install"
+      - |
+        if [ ! -d "node_modules/lucide-react" ]; then
+          echo "npm ci failed, trying npm install"
+          rm -f package-lock.json
+          npm install
+        fi
       - echo "Verifying installation"
       - npm list lucide-react || echo "Warning: lucide-react not in npm list"
       - test -d node_modules/lucide-react && echo "lucide-react directory exists" || echo "ERROR: lucide-react directory missing"
