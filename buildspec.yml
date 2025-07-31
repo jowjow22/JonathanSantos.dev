@@ -13,3 +13,9 @@ phases:
     commands:
       - echo "Building the project"
       - npm run build
+  post_build:
+    commands:
+      - echo "Uploading artifacts to S3"
+      - aws s3 sync --delete ./dist s3://${S3_BUCKET_NAME}
+      - echo "Invalidating CloudFront distribution"
+      - aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_ID} --paths "/index.html"
