@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint . && prettier --write .",
+    "lint:staged": "eslint --fix $(git diff --cached --name-only --diff-filter=d | grep -E '\\.(js|jsx|ts|tsx)$' | tr '\\n' ' ') && prettier --write $(git diff --cached --name-only --diff-filter=d | tr '\\n' ' ')",
     "ci:lint": "eslint . && prettier --check .",
     "ci:types": "tsc --noEmit",
     "ci:test": "vitest",
