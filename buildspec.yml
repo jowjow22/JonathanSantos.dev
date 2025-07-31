@@ -8,13 +8,8 @@ phases:
     commands:
       - echo "Installing dependencies"
       - npm pkg delete scripts.prepare
-      - echo "Node version info:"
-      - node --version
-      - npm --version
-      - echo "Cleaning node_modules and package-lock.json"
       - rm -rf node_modules
       - rm -f package-lock.json
-      - echo "Installing dependencies with npm install"
       - npm install
       - echo "Verifying lucide-react installation"
       - npm list lucide-react
