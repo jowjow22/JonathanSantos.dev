@@ -19,6 +19,15 @@ export default defineConfig({
       '@': path.resolve(process.cwd(), 'src'),
     },
   },
+  build: {
+    rollupOptions: {
+      // Explicitly ensure these packages are NOT external
+      external: () => {
+        // Don't externalize any npm packages
+        return false
+      },
+    },
+  },
   server: {
     proxy: {
       '/dev-api': {
