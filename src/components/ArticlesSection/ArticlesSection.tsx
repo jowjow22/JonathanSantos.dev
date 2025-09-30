@@ -46,7 +46,10 @@ export const ArticlesSection = ({ articles }: { articles: Article[] }) => {
                     <Typography.Paragraph>
                       {dateFormatter(article.published_at)}
                     </Typography.Paragraph>
-                    <Typography.H4 className="max-h-22 max-w-4/5 overflow-y-hidden font-semibold text-white!">
+                    <Typography.H4
+                      className="max-h-22 max-w-4/5 overflow-y-hidden font-semibold text-white!"
+                      dataTestId="articles-titles"
+                    >
                       {article.title.length > 40
                         ? `${article.title.slice(0, 40)}...`
                         : article.title}

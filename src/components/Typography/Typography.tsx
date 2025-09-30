@@ -51,13 +51,16 @@ const H3 = ({
 const H4 = ({
   children,
   className,
+  dataTestId,
 }: {
   children: React.ReactNode
   className?: string
+  dataTestId?: string
 }) => {
   return (
     <h4
       className={`font-poppins text-lg font-bold text-zinc-200 lg:text-xl ${className}`}
+      data-testid={dataTestId}
     >
       {children}
     </h4>
