@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 
-export const CardExpandedContent = ({ id }: { id: string }) => {
+export const CardExpandedContent = ({ projectId }: { projectId: string }) => {
   return (
     <motion.article
       initial={{ opacity: 0 }}
@@ -11,7 +11,7 @@ export const CardExpandedContent = ({ id }: { id: string }) => {
       className="fixed top-0 left-0 z-[1000] grid h-screen w-screen place-items-center before:fixed before:inset-0 before:bg-black/50"
     >
       <motion.div
-        layoutId={`card-content-${id}`}
+        layoutId={`card-content-${projectId}`}
         className="relative inset-0 h-32 w-32 bg-white text-black"
       >
         asdas

@@ -19,10 +19,11 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel'
 import { motion } from 'motion/react'
-import { CardExpandedContent } from '../CardExpandedContent/CardExpandedContent'
+import { redirect, useNavigate } from '@tanstack/react-router'
 
 export const ProjectsSection = () => {
   const MotionCarouselItem = motion.create(CarouselItem)
+  const navigate = useNavigate({ from: '/projects' })
   const tags = [
     { text: 'Vue', icon: IconBrandVue, color: 'bg-green-500' },
     { text: 'Typescript', icon: IconBrandTypescript, color: 'bg-blue-500' },
@@ -31,7 +32,6 @@ export const ProjectsSection = () => {
   ]
   return (
     <>
-      <CardExpandedContent />
       <Carousel
         opts={{
           align: 'start',
@@ -50,7 +50,18 @@ export const ProjectsSection = () => {
             >
               <Card variant="image_background">
                 <Card.Header>
-                  <Button onlyIcon icon={<IconMaximize size={20} />} />
+                  <Button
+                    onClick={() =>
+                      navigate({
+                        to: `/projects/$projectId`,
+                        params: {
+                          projectId: index,
+                        },
+                      })
+                    }
+                    onlyIcon
+                    icon={<IconMaximize size={20} />}
+                  />
                 </Card.Header>
                 <Card.Content>
                   <Typography.H3 className="font-bold text-white!">

@@ -9,7 +9,7 @@ export const ProfileImage = () => {
     >
       <img
         src="/me.png"
-        alt="Jonathan Santos"
+        alt="Jonathan Santos cartoon"
         width={250}
         height={250}
         className="mb-8 min-w-3xs md:w-sm"

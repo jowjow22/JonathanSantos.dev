@@ -36,7 +36,7 @@ export default function Index() {
         id="about"
       >
         <ProfileImage />
-        <div className="flex max-w-2xl flex-col items-center gap-y-4 lg:items-start">
+        <article className="flex max-w-2xl flex-col items-center gap-y-4 lg:items-start">
           <Reveal>
             <Typography.H1 className="text-center md:text-start">
               Jonathan Santos
@@ -79,11 +79,15 @@ export default function Index() {
                     onlyIcon
                   />
                 </a>
-                <Button icon={<IconMail size={20} />} onlyIcon />
+                <Button
+                  aria-label="Send an email"
+                  icon={<IconMail size={20} />}
+                  onlyIcon
+                />
               </div>
             </fieldset>
           </Reveal>
-        </div>
+        </article>
       </section>
       <section
         className="xs:px-8 flex h-screen w-full flex-col items-start justify-center gap-y-8 px-4 sm:px-26 lg:px-36"

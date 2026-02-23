@@ -16,19 +16,23 @@ export const Navbar = () => {
       layout
       transition={{ duration: 0.5 }}
     >
-      <ol className="flex w-full list-none flex-row items-center justify-center gap-x-4">
+      <ol
+        aria-label="Page links"
+        className="flex w-full list-none flex-row items-center justify-center gap-x-4"
+      >
         {links.map((link, index) => (
-          <Link to={link.path} key={index}>
-            <motion.li
-              onClick={() => setSelectedLink(index)}
-              className={`${
-                selectedLink === index
-                  ? 'text-gray-200'
-                  : 'text-gray-600 hover:text-gray-400'
-              } relative cursor-pointer transition-colors duration-200`}
-              layout
-              data-testid={`link-${link.id}`}
-            >
+          <motion.li
+            onClick={() => setSelectedLink(index)}
+            className={`${
+              selectedLink === index
+                ? 'text-gray-200'
+                : 'text-gray-600 hover:text-gray-400'
+            } relative cursor-pointer transition-colors duration-200`}
+            layout
+            data-testid={`link-${link.id}`}
+            key={index}
+          >
+            <Link to={link.path}>
               {link.name}
               {selectedLink === index && (
                 <motion.div
@@ -37,8 +41,8 @@ export const Navbar = () => {
                   layoutId="underline"
                 />
               )}
-            </motion.li>
-          </Link>
+            </Link>
+          </motion.li>
         ))}
       </ol>
     </motion.nav>

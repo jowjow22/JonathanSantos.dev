@@ -15,6 +15,8 @@ import { Route as _privateRouteRouteImport } from './routes/__private/route'
 import { Route as _publicIndexRouteImport } from './routes/__public/index'
 import { Route as _publicAboutRouteImport } from './routes/__public/about'
 import { Route as _privateDashboardRouteImport } from './routes/__private/dashboard'
+import { Route as _publicProjectsRouteRouteImport } from './routes/__public/projects/route'
+import { Route as _publicProjectsProjectIdRouteImport } from './routes/__public/projects/$projectId'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -44,41 +46,72 @@ const _privateDashboardRoute = _privateDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => _privateRouteRoute,
 } as any)
+const _publicProjectsRouteRoute = _publicProjectsRouteRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => _publicRouteRoute,
+} as any)
+const _publicProjectsProjectIdRoute =
+  _publicProjectsProjectIdRouteImport.update({
+    id: '/$projectId',
+    path: '/$projectId',
+    getParentRoute: () => _publicProjectsRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
+  '/projects': typeof _publicProjectsRouteRouteWithChildren
   '/dashboard': typeof _privateDashboardRoute
   '/about': typeof _publicAboutRoute
   '/': typeof _publicIndexRoute
+  '/projects/$projectId': typeof _publicProjectsProjectIdRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
+  '/projects': typeof _publicProjectsRouteRouteWithChildren
   '/dashboard': typeof _privateDashboardRoute
   '/about': typeof _publicAboutRoute
   '/': typeof _publicIndexRoute
+  '/projects/$projectId': typeof _publicProjectsProjectIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/__private': typeof _privateRouteRouteWithChildren
   '/__public': typeof _publicRouteRouteWithChildren
   '/login': typeof LoginRoute
+  '/__public/projects': typeof _publicProjectsRouteRouteWithChildren
   '/__private/dashboard': typeof _privateDashboardRoute
   '/__public/about': typeof _publicAboutRoute
   '/__public/': typeof _publicIndexRoute
+  '/__public/projects/$projectId': typeof _publicProjectsProjectIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/login' | '/dashboard' | '/about' | '/'
+  fullPaths:
+    | '/login'
+    | '/projects'
+    | '/dashboard'
+    | '/about'
+    | '/'
+    | '/projects/$projectId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/dashboard' | '/about' | '/'
+  to:
+    | '/login'
+    | '/projects'
+    | '/dashboard'
+    | '/about'
+    | '/'
+    | '/projects/$projectId'
   id:
     | '__root__'
     | '/__private'
     | '/__public'
     | '/login'
+    | '/__public/projects'
     | '/__private/dashboard'
     | '/__public/about'
     | '/__public/'
+    | '/__public/projects/$projectId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -131,6 +164,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof _privateDashboardRouteImport
       parentRoute: typeof _privateRouteRoute
     }
+    '/__public/projects': {
+      id: '/__public/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof _publicProjectsRouteRouteImport
+      parentRoute: typeof _publicRouteRoute
+    }
+    '/__public/projects/$projectId': {
+      id: '/__public/projects/$projectId'
+      path: '/$projectId'
+      fullPath: '/projects/$projectId'
+      preLoaderRoute: typeof _publicProjectsProjectIdRouteImport
+      parentRoute: typeof _publicProjectsRouteRoute
+    }
   }
 }
 
@@ -146,12 +193,25 @@ const _privateRouteRouteWithChildren = _privateRouteRoute._addFileChildren(
   _privateRouteRouteChildren,
 )
 
+interface _publicProjectsRouteRouteChildren {
+  _publicProjectsProjectIdRoute: typeof _publicProjectsProjectIdRoute
+}
+
+const _publicProjectsRouteRouteChildren: _publicProjectsRouteRouteChildren = {
+  _publicProjectsProjectIdRoute: _publicProjectsProjectIdRoute,
+}
+
+const _publicProjectsRouteRouteWithChildren =
+  _publicProjectsRouteRoute._addFileChildren(_publicProjectsRouteRouteChildren)
+
 interface _publicRouteRouteChildren {
+  _publicProjectsRouteRoute: typeof _publicProjectsRouteRouteWithChildren
   _publicAboutRoute: typeof _publicAboutRoute
   _publicIndexRoute: typeof _publicIndexRoute
 }
 
 const _publicRouteRouteChildren: _publicRouteRouteChildren = {
+  _publicProjectsRouteRoute: _publicProjectsRouteRouteWithChildren,
   _publicAboutRoute: _publicAboutRoute,
   _publicIndexRoute: _publicIndexRoute,
 }
