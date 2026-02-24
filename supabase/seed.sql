@@ -40,4 +40,4 @@ insert into auth.users (
   '',
   ''
 )
-on conflict (email) do nothing;
+on conflict do nothing;

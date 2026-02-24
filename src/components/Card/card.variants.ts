@@ -1,13 +1,13 @@
 import { cva } from 'class-variance-authority'
 
 export const card = cva(
-  'absolute  text-white p-4 bottom-0 min-w-full max-w-full ',
+  'absolute text-card-foreground p-4 bottom-0 min-w-full max-w-full ',
   {
     variants: {
       variant: {
-        default: 'bg-zinc-900 h-82 flex flex-col gap-y-4',
+        default: 'bg-card h-82 flex flex-col gap-y-4',
         image_background:
-          'bg-linear-to-t from-black/80 to-transparent h-62 xl:h-72 grid grid-cols-1 grid-rows-6 xl:grid-rows-8',
+          'text-white bg-linear-to-t from-black/80 to-transparent h-62 xl:h-72 grid grid-cols-1 grid-rows-6 xl:grid-rows-8',
       },
     },
     defaultVariants: {

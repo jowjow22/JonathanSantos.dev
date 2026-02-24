@@ -241,7 +241,11 @@ alter table public.contact_submissions enable row level security;
 create policy "contact_submissions_public_insert"
 on public.contact_submissions for insert
 to anon, authenticated
-with check (true);
+with check (
+  name is not null and name <> ''
+  and email is not null and email <> ''
+  and message is not null and message <> ''
+);
 
 create policy "contact_submissions_admin_select"
 on public.contact_submissions for select

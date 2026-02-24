@@ -125,6 +125,26 @@ html {
   --sidebar-ring: oklch(0.552 0.016 285.938);
 }
 
+.light {
+  --background: oklch(0.98 0.002 285);
+  --foreground: oklch(0.15 0.005 285.823);
+  --card: oklch(0.96 0.003 285);
+  --card-foreground: oklch(0.15 0.005 285.823);
+  --popover: oklch(0.96 0.003 285);
+  --popover-foreground: oklch(0.15 0.005 285.823);
+  --primary: oklch(0.25 0.005 285.885);
+  --primary-foreground: oklch(0.98 0.002 285);
+  --secondary: oklch(0.92 0.004 286.32);
+  --secondary-foreground: oklch(0.15 0.005 285.823);
+  --muted: oklch(0.92 0.004 286.32);
+  --muted-foreground: oklch(0.45 0.01 286);
+  --accent: oklch(0.92 0.004 286.32);
+  --accent-foreground: oklch(0.15 0.005 285.823);
+  --border: oklch(0 0 0 / 12%);
+  --input: oklch(0 0 0 / 8%);
+  --ring: oklch(0.45 0.01 285.938);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

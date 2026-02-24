@@ -11,6 +11,7 @@ returns jsonb
 language plpgsql
 security definer
 stable
+set search_path = ''
 as $$
   declare
     claims jsonb;

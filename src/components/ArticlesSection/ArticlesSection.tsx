@@ -43,7 +43,7 @@ export const ArticlesSection = ({ articles }: { articles: Article[] }) => {
                   }}
                 >
                   <div className="flex w-full flex-col items-start">
-                    <Typography.Paragraph>
+                    <Typography.Paragraph className="text-white!">
                       {dateFormatter(article.published_at)}
                     </Typography.Paragraph>
                     <Typography.H4

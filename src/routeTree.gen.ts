@@ -9,47 +9,62 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as LoginRouteImport } from './routes/login'
+import { Route as AdminRouteRouteImport } from './routes/admin/route'
 import { Route as _publicRouteRouteImport } from './routes/__public/route'
-import { Route as _privateRouteRouteImport } from './routes/__private/route'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as _publicIndexRouteImport } from './routes/__public/index'
+import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as _publicAboutRouteImport } from './routes/__public/about'
-import { Route as _privateDashboardRouteImport } from './routes/__private/dashboard'
+import { Route as Admin_guardRouteRouteImport } from './routes/admin/__guard/route'
 import { Route as _publicProjectsRouteRouteImport } from './routes/__public/projects/route'
+import { Route as Admin_guardDashboardRouteImport } from './routes/admin/__guard/dashboard'
 import { Route as _publicProjectsProjectIdRouteImport } from './routes/__public/projects/$projectId'
+import { Route as Admin_guardProjectsIndexRouteImport } from './routes/admin/__guard/projects/index'
+import { Route as Admin_guardProjectsNewRouteImport } from './routes/admin/__guard/projects/new'
+import { Route as Admin_guardProjectsProjectIdEditRouteImport } from './routes/admin/__guard/projects/$projectId/edit'
 
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
+const AdminRouteRoute = AdminRouteRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const _publicRouteRoute = _publicRouteRouteImport.update({
   id: '/__public',
   getParentRoute: () => rootRouteImport,
 } as any)
-const _privateRouteRoute = _privateRouteRouteImport.update({
-  id: '/__private',
-  getParentRoute: () => rootRouteImport,
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRouteRoute,
 } as any)
 const _publicIndexRoute = _publicIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => _publicRouteRoute,
 } as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AdminRouteRoute,
+} as any)
 const _publicAboutRoute = _publicAboutRouteImport.update({
   id: '/about',
   path: '/about',
   getParentRoute: () => _publicRouteRoute,
 } as any)
-const _privateDashboardRoute = _privateDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => _privateRouteRoute,
+const Admin_guardRouteRoute = Admin_guardRouteRouteImport.update({
+  id: '/__guard',
+  getParentRoute: () => AdminRouteRoute,
 } as any)
 const _publicProjectsRouteRoute = _publicProjectsRouteRouteImport.update({
   id: '/projects',
   path: '/projects',
   getParentRoute: () => _publicRouteRoute,
+} as any)
+const Admin_guardDashboardRoute = Admin_guardDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => Admin_guardRouteRoute,
 } as any)
 const _publicProjectsProjectIdRoute =
   _publicProjectsProjectIdRouteImport.update({
@@ -57,76 +72,120 @@ const _publicProjectsProjectIdRoute =
     path: '/$projectId',
     getParentRoute: () => _publicProjectsRouteRoute,
   } as any)
+const Admin_guardProjectsIndexRoute =
+  Admin_guardProjectsIndexRouteImport.update({
+    id: '/projects/',
+    path: '/projects/',
+    getParentRoute: () => Admin_guardRouteRoute,
+  } as any)
+const Admin_guardProjectsNewRoute = Admin_guardProjectsNewRouteImport.update({
+  id: '/projects/new',
+  path: '/projects/new',
+  getParentRoute: () => Admin_guardRouteRoute,
+} as any)
+const Admin_guardProjectsProjectIdEditRoute =
+  Admin_guardProjectsProjectIdEditRouteImport.update({
+    id: '/projects/$projectId/edit',
+    path: '/projects/$projectId/edit',
+    getParentRoute: () => Admin_guardRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/login': typeof LoginRoute
+  '/admin': typeof Admin_guardRouteRouteWithChildren
   '/projects': typeof _publicProjectsRouteRouteWithChildren
-  '/dashboard': typeof _privateDashboardRoute
   '/about': typeof _publicAboutRoute
+  '/admin/login': typeof AdminLoginRoute
   '/': typeof _publicIndexRoute
+  '/admin/': typeof AdminIndexRoute
   '/projects/$projectId': typeof _publicProjectsProjectIdRoute
+  '/admin/dashboard': typeof Admin_guardDashboardRoute
+  '/admin/projects/new': typeof Admin_guardProjectsNewRoute
+  '/admin/projects': typeof Admin_guardProjectsIndexRoute
+  '/admin/projects/$projectId/edit': typeof Admin_guardProjectsProjectIdEditRoute
 }
 export interface FileRoutesByTo {
-  '/login': typeof LoginRoute
   '/projects': typeof _publicProjectsRouteRouteWithChildren
-  '/dashboard': typeof _privateDashboardRoute
+  '/admin': typeof AdminIndexRoute
   '/about': typeof _publicAboutRoute
+  '/admin/login': typeof AdminLoginRoute
   '/': typeof _publicIndexRoute
   '/projects/$projectId': typeof _publicProjectsProjectIdRoute
+  '/admin/dashboard': typeof Admin_guardDashboardRoute
+  '/admin/projects/new': typeof Admin_guardProjectsNewRoute
+  '/admin/projects': typeof Admin_guardProjectsIndexRoute
+  '/admin/projects/$projectId/edit': typeof Admin_guardProjectsProjectIdEditRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/__private': typeof _privateRouteRouteWithChildren
   '/__public': typeof _publicRouteRouteWithChildren
-  '/login': typeof LoginRoute
+  '/admin': typeof AdminRouteRouteWithChildren
   '/__public/projects': typeof _publicProjectsRouteRouteWithChildren
-  '/__private/dashboard': typeof _privateDashboardRoute
+  '/admin/__guard': typeof Admin_guardRouteRouteWithChildren
   '/__public/about': typeof _publicAboutRoute
+  '/admin/login': typeof AdminLoginRoute
   '/__public/': typeof _publicIndexRoute
+  '/admin/': typeof AdminIndexRoute
   '/__public/projects/$projectId': typeof _publicProjectsProjectIdRoute
+  '/admin/__guard/dashboard': typeof Admin_guardDashboardRoute
+  '/admin/__guard/projects/new': typeof Admin_guardProjectsNewRoute
+  '/admin/__guard/projects/': typeof Admin_guardProjectsIndexRoute
+  '/admin/__guard/projects/$projectId/edit': typeof Admin_guardProjectsProjectIdEditRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/login'
+    | '/admin'
     | '/projects'
-    | '/dashboard'
     | '/about'
+    | '/admin/login'
     | '/'
+    | '/admin/'
     | '/projects/$projectId'
+    | '/admin/dashboard'
+    | '/admin/projects/new'
+    | '/admin/projects'
+    | '/admin/projects/$projectId/edit'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/login'
     | '/projects'
-    | '/dashboard'
+    | '/admin'
     | '/about'
+    | '/admin/login'
     | '/'
     | '/projects/$projectId'
+    | '/admin/dashboard'
+    | '/admin/projects/new'
+    | '/admin/projects'
+    | '/admin/projects/$projectId/edit'
   id:
     | '__root__'
-    | '/__private'
     | '/__public'
-    | '/login'
+    | '/admin'
     | '/__public/projects'
-    | '/__private/dashboard'
+    | '/admin/__guard'
     | '/__public/about'
+    | '/admin/login'
     | '/__public/'
+    | '/admin/'
     | '/__public/projects/$projectId'
+    | '/admin/__guard/dashboard'
+    | '/admin/__guard/projects/new'
+    | '/admin/__guard/projects/'
+    | '/admin/__guard/projects/$projectId/edit'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  _privateRouteRoute: typeof _privateRouteRouteWithChildren
   _publicRouteRoute: typeof _publicRouteRouteWithChildren
-  LoginRoute: typeof LoginRoute
+  AdminRouteRoute: typeof AdminRouteRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/__public': {
@@ -136,12 +195,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof _publicRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/__private': {
-      id: '/__private'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof _privateRouteRouteImport
-      parentRoute: typeof rootRouteImport
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRouteRoute
     }
     '/__public/': {
       id: '/__public/'
@@ -150,6 +209,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof _publicIndexRouteImport
       parentRoute: typeof _publicRouteRoute
     }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof AdminRouteRoute
+    }
     '/__public/about': {
       id: '/__public/about'
       path: '/about'
@@ -157,12 +223,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof _publicAboutRouteImport
       parentRoute: typeof _publicRouteRoute
     }
-    '/__private/dashboard': {
-      id: '/__private/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof _privateDashboardRouteImport
-      parentRoute: typeof _privateRouteRoute
+    '/admin/__guard': {
+      id: '/admin/__guard'
+      path: ''
+      fullPath: '/admin'
+      preLoaderRoute: typeof Admin_guardRouteRouteImport
+      parentRoute: typeof AdminRouteRoute
     }
     '/__public/projects': {
       id: '/__public/projects'
@@ -171,6 +237,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof _publicProjectsRouteRouteImport
       parentRoute: typeof _publicRouteRoute
     }
+    '/admin/__guard/dashboard': {
+      id: '/admin/__guard/dashboard'
+      path: '/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof Admin_guardDashboardRouteImport
+      parentRoute: typeof Admin_guardRouteRoute
+    }
     '/__public/projects/$projectId': {
       id: '/__public/projects/$projectId'
       path: '/$projectId'
@@ -178,20 +251,29 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof _publicProjectsProjectIdRouteImport
       parentRoute: typeof _publicProjectsRouteRoute
     }
+    '/admin/__guard/projects/': {
+      id: '/admin/__guard/projects/'
+      path: '/projects'
+      fullPath: '/admin/projects'
+      preLoaderRoute: typeof Admin_guardProjectsIndexRouteImport
+      parentRoute: typeof Admin_guardRouteRoute
+    }
+    '/admin/__guard/projects/new': {
+      id: '/admin/__guard/projects/new'
+      path: '/projects/new'
+      fullPath: '/admin/projects/new'
+      preLoaderRoute: typeof Admin_guardProjectsNewRouteImport
+      parentRoute: typeof Admin_guardRouteRoute
+    }
+    '/admin/__guard/projects/$projectId/edit': {
+      id: '/admin/__guard/projects/$projectId/edit'
+      path: '/projects/$projectId/edit'
+      fullPath: '/admin/projects/$projectId/edit'
+      preLoaderRoute: typeof Admin_guardProjectsProjectIdEditRouteImport
+      parentRoute: typeof Admin_guardRouteRoute
+    }
   }
 }
-
-interface _privateRouteRouteChildren {
-  _privateDashboardRoute: typeof _privateDashboardRoute
-}
-
-const _privateRouteRouteChildren: _privateRouteRouteChildren = {
-  _privateDashboardRoute: _privateDashboardRoute,
-}
-
-const _privateRouteRouteWithChildren = _privateRouteRoute._addFileChildren(
-  _privateRouteRouteChildren,
-)
 
 interface _publicProjectsRouteRouteChildren {
   _publicProjectsProjectIdRoute: typeof _publicProjectsProjectIdRoute
@@ -220,10 +302,42 @@ const _publicRouteRouteWithChildren = _publicRouteRoute._addFileChildren(
   _publicRouteRouteChildren,
 )
 
+interface Admin_guardRouteRouteChildren {
+  Admin_guardDashboardRoute: typeof Admin_guardDashboardRoute
+  Admin_guardProjectsNewRoute: typeof Admin_guardProjectsNewRoute
+  Admin_guardProjectsIndexRoute: typeof Admin_guardProjectsIndexRoute
+  Admin_guardProjectsProjectIdEditRoute: typeof Admin_guardProjectsProjectIdEditRoute
+}
+
+const Admin_guardRouteRouteChildren: Admin_guardRouteRouteChildren = {
+  Admin_guardDashboardRoute: Admin_guardDashboardRoute,
+  Admin_guardProjectsNewRoute: Admin_guardProjectsNewRoute,
+  Admin_guardProjectsIndexRoute: Admin_guardProjectsIndexRoute,
+  Admin_guardProjectsProjectIdEditRoute: Admin_guardProjectsProjectIdEditRoute,
+}
+
+const Admin_guardRouteRouteWithChildren =
+  Admin_guardRouteRoute._addFileChildren(Admin_guardRouteRouteChildren)
+
+interface AdminRouteRouteChildren {
+  Admin_guardRouteRoute: typeof Admin_guardRouteRouteWithChildren
+  AdminLoginRoute: typeof AdminLoginRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteRouteChildren: AdminRouteRouteChildren = {
+  Admin_guardRouteRoute: Admin_guardRouteRouteWithChildren,
+  AdminLoginRoute: AdminLoginRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteRouteWithChildren = AdminRouteRoute._addFileChildren(
+  AdminRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
-  _privateRouteRoute: _privateRouteRouteWithChildren,
   _publicRouteRoute: _publicRouteRouteWithChildren,
-  LoginRoute: LoginRoute,
+  AdminRouteRoute: AdminRouteRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

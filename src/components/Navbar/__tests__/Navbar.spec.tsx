@@ -34,7 +34,9 @@ describe('Navbar component', () => {
     })
     const aboutLink = screen.getByText('About')
     aboutLink.click()
-    expect(aboutLink).toHaveClass('text-gray-200')
+    expect(screen.getByTestId('link-about-section')).toHaveClass(
+      'text-foreground'
+    )
   })
   it('renders the underline for the selected link', async () => {
     await act(async () => {

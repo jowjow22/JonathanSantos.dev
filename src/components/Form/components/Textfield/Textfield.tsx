@@ -52,7 +52,7 @@ export function TextField<
                 {...field}
                 className={cn(
                   'resize-none',
-                  'placeholder:text-muted-foreground aria-invalid:placeholder:text-destructive/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 font-poppins border-zinc-500 text-xs focus-visible:border-indigo-700 focus-visible:ring-indigo-700/50'
+                  'placeholder:text-muted-foreground aria-invalid:placeholder:text-destructive/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-input/30 font-poppins border-border text-foreground text-xs focus-visible:border-indigo-700 focus-visible:ring-indigo-700/50'
                 )}
               />
             ) : (
@@ -62,7 +62,7 @@ export function TextField<
                 type={type}
                 {...field}
                 className={cn(
-                  'placeholder:text-muted-foreground aria-invalid:placeholder:text-destructive/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 font-poppins border-zinc-500 text-xs focus-visible:border-indigo-700 focus-visible:ring-indigo-700/50'
+                  'placeholder:text-muted-foreground aria-invalid:placeholder:text-destructive/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-input/30 font-poppins border-border text-foreground text-xs focus-visible:border-indigo-700 focus-visible:ring-indigo-700/50'
                 )}
               />
             )}

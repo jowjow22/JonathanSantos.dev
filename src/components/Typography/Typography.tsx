@@ -9,7 +9,7 @@ const H1 = ({
 }) => {
   return (
     <h1
-      className={`font-poppins text-3xl font-bold text-zinc-200 md:text-5xl lg:text-6xl ${className}`}
+      className={`font-poppins text-foreground text-3xl font-bold md:text-5xl lg:text-6xl ${className}`}
     >
       {children}
     </h1>
@@ -25,7 +25,7 @@ const H2 = ({
 }) => {
   return (
     <h2
-      className={`font-poppins text-3xl font-bold text-zinc-200 lg:text-5xl ${className}`}
+      className={`font-poppins text-foreground text-3xl font-bold lg:text-5xl ${className}`}
     >
       {children}
     </h2>
@@ -41,7 +41,7 @@ const H3 = ({
 }) => {
   return (
     <h3
-      className={`font-poppins text-xl font-bold text-zinc-200 lg:text-3xl ${className}`}
+      className={`font-poppins text-foreground text-xl font-bold lg:text-3xl ${className}`}
     >
       {children}
     </h3>
@@ -59,7 +59,7 @@ const H4 = ({
 }) => {
   return (
     <h4
-      className={`font-poppins text-lg font-bold text-zinc-200 lg:text-xl ${className}`}
+      className={`font-poppins text-foreground text-lg font-bold lg:text-xl ${className}`}
       data-testid={dataTestId}
     >
       {children}
@@ -75,7 +75,9 @@ const Paragraph = ({
   className?: string
 }) => {
   return (
-    <p className={`font-inter text-sm text-zinc-200 lg:text-base ${className}`}>
+    <p
+      className={`font-inter text-foreground text-sm lg:text-base ${className}`}
+    >
       {children}
     </p>
   )
