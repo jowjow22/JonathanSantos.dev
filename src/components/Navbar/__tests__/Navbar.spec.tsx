@@ -46,7 +46,7 @@ describe('Navbar component', () => {
     aboutLink.click()
     expect(screen.getByText('About')).toBeInTheDocument()
     expect(screen.getByTestId('underline')).toBeInTheDocument()
-    expect(screen.getByTestId('underline').parentElement).toBe(aboutLink)
+    expect(aboutLink).toContainElement(screen.getByTestId('underline'))
   })
   it('does not render the underline for unselected links', async () => {
     await act(async () => {
