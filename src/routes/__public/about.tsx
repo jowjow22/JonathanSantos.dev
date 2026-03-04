@@ -1,10 +1,8 @@
-import { CardExpandedContent } from '@/components/CardExpandedContent/CardExpandedContent'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/__public/about')({
-  component: About,
+  beforeLoad: () => {
+    throw redirect({ to: '/' })
+  },
+  component: () => null,
 })
-
-function About() {
-  return <CardExpandedContent />
-}

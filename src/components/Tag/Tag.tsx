@@ -9,17 +9,19 @@ interface ITagProps {
 }
 
 export const Tag = ({ text, icon: Icon, disabled, color }: ITagProps) => {
-  const iconElement = Icon ? <Icon size={15} className="text-zinc-200" /> : null
+  const iconElement = Icon ? (
+    <Icon size={15} className="text-secondary-foreground" />
+  ) : null
   return (
     <div
-      className={`flex max-h-fit items-center gap-x-2 rounded-full bg-zinc-800 px-4 py-2 text-sm font-bold text-zinc-200 ${
+      className={`bg-secondary text-secondary-foreground flex max-h-fit items-center gap-x-2 rounded-full px-4 py-2 text-sm font-bold ${
         disabled ? 'cursor-not-allowed' : 'cursor-pointer'
       } ${color}`}
       style={{
         backgroundColor: disabled ? 'rgba(0, 0, 0, 0.5)' : color,
       }}
     >
-      {iconElement && <span className="text-zinc-200">{iconElement}</span>}
+      {iconElement && <span>{iconElement}</span>}
       <span className="text-sm">{text}</span>
     </div>
   )

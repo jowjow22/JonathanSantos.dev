@@ -1,8 +1,6 @@
 import { z } from 'zod'
 
 const envSchema = z.object({
-  VITE_DEV_API_KEY: z.string().min(1),
-  VITE_MY_CONTACT_EMAIL: z.email(),
   VITE_SUPABASE_URL: z.string().url(),
   VITE_SUPABASE_PUBLISHABLE_KEY: z.string().min(1),
 })

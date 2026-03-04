@@ -1,17 +1,22 @@
 import { Navbar } from '@/components/Navbar/Navbar'
-import { createFileRoute, Outlet } from '@tanstack/react-router'
+import { createFileRoute, useMatchRoute } from '@tanstack/react-router'
+import { MotionConfig } from 'motion/react'
+import { AnimatedOutlet } from '@/animations/AnimatedOutlet'
 
 export const Route = createFileRoute('/__public')({
   component: PublicLayout,
 })
 
 export default function PublicLayout() {
+  const matchRoute = useMatchRoute()
+  const isProjectDetail = matchRoute({ to: '/projects/$projectId' })
+
   return (
-    <>
-      <Navbar />
+    <MotionConfig reducedMotion="user">
+      {!isProjectDetail && <Navbar />}
       <main>
-        <Outlet />
+        <AnimatedOutlet />
       </main>
-    </>
+    </MotionConfig>
   )
 }

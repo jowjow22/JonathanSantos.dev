@@ -4,5 +4,12 @@ import { env } from '@/lib/env'
 
 export const supabase = createClient<Database>(
   env.VITE_SUPABASE_URL,
-  env.VITE_SUPABASE_PUBLISHABLE_KEY
+  env.VITE_SUPABASE_PUBLISHABLE_KEY,
+  {
+    auth: {
+      storage: window.sessionStorage,
+      persistSession: true,
+      autoRefreshToken: true,
+    },
+  }
 )

@@ -34,7 +34,9 @@ describe('Navbar component', () => {
     })
     const aboutLink = screen.getByText('About')
     aboutLink.click()
-    expect(aboutLink).toHaveClass('text-gray-200')
+    expect(screen.getByTestId('link-about-section')).toHaveClass(
+      'text-foreground'
+    )
   })
   it('renders the underline for the selected link', async () => {
     await act(async () => {
@@ -44,7 +46,7 @@ describe('Navbar component', () => {
     aboutLink.click()
     expect(screen.getByText('About')).toBeInTheDocument()
     expect(screen.getByTestId('underline')).toBeInTheDocument()
-    expect(screen.getByTestId('underline').parentElement).toBe(aboutLink)
+    expect(aboutLink).toContainElement(screen.getByTestId('underline'))
   })
   it('does not render the underline for unselected links', async () => {
     await act(async () => {
