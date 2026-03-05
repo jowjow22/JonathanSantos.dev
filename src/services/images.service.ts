@@ -55,10 +55,12 @@ export async function getSignedImageUrls(
     .from('project-images')
     .createSignedUrls(paths, expiresIn)
   if (error) throw error
-  return (data ?? []).map((item) => ({
-    path: item.path,
-    signedUrl: item.signedUrl,
-  }))
+  return (data ?? [])
+    .filter((item): item is typeof item & { path: string } => item.path !== null)
+    .map((item) => ({
+      path: item.path,
+      signedUrl: item.signedUrl,
+    }))
 }
 
 // Fetch all project_images rows for a project, ordered by sort_order ascending

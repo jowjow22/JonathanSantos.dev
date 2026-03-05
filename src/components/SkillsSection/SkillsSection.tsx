@@ -4,6 +4,7 @@ import { Typography } from '@/components/Typography/Typography'
 import { Reveal } from '@/animations/Reveal'
 import { SkillChip } from './SkillChip'
 import * as motion from 'motion/react-client'
+import { easeOut } from 'motion/react'
 
 type Skill = Database['public']['Tables']['skills']['Row']
 type SkillCategory = Database['public']['Tables']['skill_categories']['Row']
@@ -24,7 +25,7 @@ const chipItemVariants = {
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.2, ease: 'easeOut' },
+    transition: { duration: 0.2, ease: easeOut },
   },
 }
 
