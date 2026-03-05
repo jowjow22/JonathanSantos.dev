@@ -5,19 +5,25 @@ import {
   useMatch,
   useMatches,
 } from '@tanstack/react-router'
-import { AnimatePresence, useIsPresent, motion } from 'motion/react'
+import {
+  AnimatePresence,
+  useIsPresent,
+  motion,
+  easeIn,
+  easeOut,
+} from 'motion/react'
 
 const pageVariants = {
   initial: { opacity: 0, scale: 0.97 },
   animate: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.25, ease: 'easeOut' },
+    transition: { duration: 0.25, ease: easeOut },
   },
   exit: {
     opacity: 0,
     scale: 0.97,
-    transition: { duration: 0.25, ease: 'easeIn' },
+    transition: { duration: 0.25, ease: easeIn },
   },
 }
 
