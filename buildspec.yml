@@ -4,17 +4,20 @@ phases:
   install:
     runtime-versions:
       nodejs: 22
+
   pre_build:
     commands:
       - echo "Installing dependencies"
-      - npm pkg delete scripts.prepare
-      - npm ci
+      - HUSKY=0 npm ci
+
   build:
     commands:
       - echo "Building the project"
       - node --version
       - npm --version
+      - ls node_modules | grep react-hook-form
       - npm run build
+
   post_build:
     commands:
       - echo "Uploading artifacts to S3"
