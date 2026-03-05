@@ -7,7 +7,7 @@ export const card = cva(
       variant: {
         default: 'bg-card h-82 flex flex-col gap-y-4',
         image_background:
-          'text-white bg-linear-to-t from-black/80 to-transparent h-62 xl:h-72 grid grid-cols-1 grid-rows-6 xl:grid-rows-8',
+          'text-white bg-linear-to-t from-black/80 to-transparent h-62 xl:h-72 grid grid-cols-1 grid-rows-8',
       },
     },
     defaultVariants: {

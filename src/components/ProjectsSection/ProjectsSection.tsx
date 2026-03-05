@@ -113,7 +113,7 @@ export const ProjectsSection = () => {
                   <Typography.H3 className="font-bold text-white!">
                     {project.title}
                   </Typography.H3>
-                  <p className="line-clamp-2 overflow-hidden text-ellipsis">
+                  <p className="mb-4 line-clamp-2 overflow-hidden text-ellipsis">
                     {project.description}
                   </p>
                 </Card.Content>
