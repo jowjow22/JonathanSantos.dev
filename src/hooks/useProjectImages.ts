@@ -22,10 +22,12 @@ export function useProjectImages(projectId: string) {
         3600
       )
       const urlMap = new Map(signedUrls.map((s) => [s.path, s.signedUrl]))
-      return images.map((img) => ({
-        ...img,
-        signedUrl: urlMap.get(img.storage_path) ?? '',
-      }))
+      return images
+        .filter((img) => urlMap.has(img.storage_path))
+        .map((img) => ({
+          ...img,
+          signedUrl: urlMap.get(img.storage_path)!,
+        }))
     },
     staleTime: 50 * 60 * 1000, // 50 min — refresh before 1h signed URL expiry
     gcTime: 60 * 60 * 1000,

@@ -30,7 +30,8 @@ export async function insertProjectImage(
     .select()
     .single()
     .throwOnError()
-  return data!
+  if (!data) throw new Error('Insert returned no data')
+  return data
 }
 
 // Delete a single image: remove storage object + DB row
@@ -56,7 +57,10 @@ export async function getSignedImageUrls(
     .createSignedUrls(paths, expiresIn)
   if (error) throw error
   return (data ?? [])
-    .filter((item): item is typeof item & { path: string } => item.path !== null)
+    .filter(
+      (item): item is typeof item & { path: string; signedUrl: string } =>
+        item.path !== null && Boolean(item.signedUrl)
+    )
     .map((item) => ({
       path: item.path,
       signedUrl: item.signedUrl,
