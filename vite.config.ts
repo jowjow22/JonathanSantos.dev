@@ -6,6 +6,14 @@ import { tanstackRouter } from '@tanstack/router-plugin/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  optimizeDeps: {
+    include: ['react-hook-form', '@hookform/resolvers/zod'],
+  },
+  build: {
+    rollupOptions: {
+      external: [],
+    }
+  },
   plugins: [
     tanstackRouter({
       target: 'react',
